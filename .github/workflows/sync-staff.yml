@@ -2,7 +2,8 @@ name: Discord Staff Sync
 
 on:
   schedule:
-    - cron: '*/20 * * * *'
+    # GitHub'in izin verdigi en kisa cron araligi 5 dakika
+    - cron: '*/5 * * * *'
   workflow_dispatch: {}
 
 permissions:
