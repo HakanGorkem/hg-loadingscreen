@@ -219,6 +219,10 @@ body {
 /* --- SOSYAL / HARİCİ BAĞLANTI BUTONLARI (dikey liste) --- */
 .panel-bottom {
     margin-top: 26px;
+    flex: 1;
+    min-height: 0;
+    display: flex;
+    flex-direction: column;
 }
 
 .social-links {
@@ -293,7 +297,7 @@ body {
    tasmaya sebep olabilirdi. */
 .announce-slider {
     position: relative;
-    margin-top: 22px;
+    margin-top: auto;
     width: 100%;
     height: clamp(90px, 15vh, 160px);
     overflow: hidden;

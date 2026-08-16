@@ -23,9 +23,9 @@ const Config = {
     // Görsel eklemek için assets/ klasörüne dosyayı koyup buraya yolunu
     // yazmanız yeterli. Liste boş bırakılırsa slayt alanı hiç görünmez.
     Announcements: [
-        { image: "assets/announce1.svg", alt: "Yeni sezon başladı" },
-        { image: "assets/announce2.svg", alt: "Hafta sonu özel yarış etkinliği" },
-        { image: "assets/announce3.svg", alt: "Discord'a katıl" },
+        { image: "assets/announce1.svg", alt: "QuasarV Roleplay - Kalitenin tek adresi" },
+        { image: "assets/announce2.svg", alt: "Açılışa özel indirim - 28-31 Ağustos tüm donate ürünlerinde %25 indirim" },
+        { image: "assets/announce3.svg", alt: "Açılışa özel etkinlikler - 28-31 Ağustos, detaylar için Discord duyurularını takip edin" },
     ],
 
     // Yönetim Kadrosu — Discord sunucusundan otomatik çekilir
