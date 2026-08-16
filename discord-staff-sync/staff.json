@@ -2,71 +2,85 @@
   {
     "name": ".𝙈𝙀𝘼𝙆𝙆𝙐𝙎ᑫᵘᵃˢᵃʳ",
     "role": "Project Leader",
-    "image": "https://cdn.discordapp.com/avatars/444564278884827155/53e4147c3a756790973453402fe7cadb.png?size=128"
+    "image": "https://cdn.discordapp.com/avatars/444564278884827155/53e4147c3a756790973453402fe7cadb.png?size=128",
+    "status": "offline"
   },
   {
     "name": "' Cenkerᑫᵘᵃˢᵃʳ",
     "role": "Project Leader",
-    "image": "https://cdn.discordapp.com/avatars/987025882445144085/d0e88b3412277eb8b8e3f01d4b62d561.png?size=128"
+    "image": "https://cdn.discordapp.com/avatars/987025882445144085/d0e88b3412277eb8b8e3f01d4b62d561.png?size=128",
+    "status": "offline"
   },
   {
     "name": "' Hakanᑫᵘᵃˢᵃʳ",
     "role": "Project Leader",
-    "image": "https://cdn.discordapp.com/avatars/254327673663389697/a_0c59a48b71f517b55cdf0aa973622ef1.gif?size=128"
+    "image": "https://cdn.discordapp.com/avatars/254327673663389697/a_0c59a48b71f517b55cdf0aa973622ef1.gif?size=128",
+    "status": "online"
   },
   {
     "name": "' Meishienᑫᵘᵃˢᵃʳ",
     "role": "Project Leader",
-    "image": "https://cdn.discordapp.com/avatars/350605847220453376/393333c2c4f09113fb8b7686c98fd5ad.png?size=128"
+    "image": "https://cdn.discordapp.com/avatars/350605847220453376/393333c2c4f09113fb8b7686c98fd5ad.png?size=128",
+    "status": "offline"
   },
   {
     "name": "𝓦𝓮𝓰𝓹𝓪 ᑫᵘᵃˢᵃʳ",
     "role": "Project Director",
-    "image": "https://cdn.discordapp.com/avatars/827658257208180747/5078455c3949ec5dcb4add77766897ed.png?size=128"
+    "image": "https://cdn.discordapp.com/avatars/827658257208180747/5078455c3949ec5dcb4add77766897ed.png?size=128",
+    "status": "offline"
   },
   {
-    "name": "! Edo Ozi",
+    "name": "' Edo Oziᑫᵘᵃˢᵃʳ",
     "role": "Founder",
-    "image": "https://cdn.discordapp.com/avatars/923651507272962059/a_11ecd4f6e49a86ee9320ce17ba44b66c.gif?size=128"
+    "image": "https://cdn.discordapp.com/avatars/923651507272962059/a_11ecd4f6e49a86ee9320ce17ba44b66c.gif?size=128",
+    "status": "offline"
   },
   {
     "name": "' Deadzoneᑫᵘᵃˢᵃʳ",
     "role": "Senior Developer",
-    "image": "https://cdn.discordapp.com/avatars/763484012400214057/a_5227e8179ab42aa298b87e8d28551e68.gif?size=128"
+    "image": "https://cdn.discordapp.com/avatars/763484012400214057/a_5227e8179ab42aa298b87e8d28551e68.gif?size=128",
+    "status": "offline"
   },
   {
     "name": "' Wizoᑫᵘᵃˢᵃʳ",
     "role": "Senior Developer",
-    "image": "https://cdn.discordapp.com/avatars/898918191496040459/b95a9712567c31f73b34f880ae1f9e94.png?size=128"
+    "image": "https://cdn.discordapp.com/avatars/898918191496040459/b95a9712567c31f73b34f880ae1f9e94.png?size=128",
+    "status": "offline"
   },
   {
     "name": "' Tolgaᑫᵘᵃˢᵃʳ",
     "role": "Management",
-    "image": "https://cdn.discordapp.com/avatars/935194614959312986/53f6206921674b6c8f50906b01377988.png?size=128"
+    "image": "https://cdn.discordapp.com/avatars/935194614959312986/53f6206921674b6c8f50906b01377988.png?size=128",
+    "status": "offline"
   },
   {
     "name": "Ryan Ozi",
     "role": "Management",
-    "image": "https://cdn.discordapp.com/avatars/679388726471950366/a_35f41d7e3398c67f50d495f80396a3f5.gif?size=128"
+    "image": "https://cdn.discordapp.com/avatars/679388726471950366/a_35f41d7e3398c67f50d495f80396a3f5.gif?size=128",
+    "status": "offline"
   },
   {
     "name": "' Altayxac",
     "role": "Master",
-    "image": "https://cdn.discordapp.com/avatars/512293832919089159/6ebf609a62e1cf1de15959cfeb0ea6f2.png?size=128"
+    "image": "https://cdn.discordapp.com/avatars/512293832919089159/6ebf609a62e1cf1de15959cfeb0ea6f2.png?size=128",
+    "status": "offline"
   },
   {
     "name": "' Aliçoᑫᵘᵃˢᵃʳ",
     "role": "Admin",
-    "image": "https://cdn.discordapp.com/avatars/221698973944119298/a_78ac835b6d90182186a99f6f438687a5.gif?size=128"
+    "image": "https://cdn.discordapp.com/avatars/221698973944119298/a_78ac835b6d90182186a99f6f438687a5.gif?size=128",
+    "status": "offline"
   },
   {
     "name": "' Kadirᑫᵘᵃˢᵃʳ",
     "role": "Admin",
-    "image": "https://cdn.discordapp.com/avatars/792828060692905996/41cf8f83cddf29d6001394b477f0e652.png?size=128"
+    "image": "https://cdn.discordapp.com/avatars/792828060692905996/41cf8f83cddf29d6001394b477f0e652.png?size=128",
+    "status": "offline"
   },
   {
     "name": "' Paragonᑫᵘᵃˢᵃʳ",
     "role": "Business Manager",
-    "image": "https://cdn.discordapp.com/avatars/849699410148327484/05529e56196421b6cf5fb0db477ee6be.png?size=128"
+    "image": "https://cdn.discordapp.com/avatars/849699410148327484/05529e56196421b6cf5fb0db477ee6be.png?size=128",
+    "status": "offline"
   }
 ]
