@@ -23,8 +23,9 @@ const Config = {
     // Görsel eklemek için assets/ klasörüne dosyayı koyup buraya yolunu
     // yazmanız yeterli. Liste boş bırakılırsa slayt alanı hiç görünmez.
     Announcements: [
-        // { image: "assets/duyuru1.png", alt: "Yeni güncelleme geldi!" },
-        // { image: "assets/duyuru2.png", alt: "Bu hafta sonu özel etkinlik!" },
+        { image: "assets/announce1.svg", alt: "Yeni sezon başladı" },
+        { image: "assets/announce2.svg", alt: "Hafta sonu özel yarış etkinliği" },
+        { image: "assets/announce3.svg", alt: "Discord'a katıl" },
     ],
 
     // Yönetim Kadrosu — Discord sunucusundan otomatik çekilir

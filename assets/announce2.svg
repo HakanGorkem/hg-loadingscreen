@@ -1,0 +1,33 @@
+<svg width="960" height="540" viewBox="0 0 960 540" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bg2" x1="0" y1="1" x2="1" y2="0">
+      <stop offset="0%" stop-color="#120a0a"/>
+      <stop offset="100%" stop-color="#07070a"/>
+    </linearGradient>
+    <radialGradient id="glow2" cx="80%" cy="30%" r="60%">
+      <stop offset="0%" stop-color="#ff0000" stop-opacity="0.35"/>
+      <stop offset="100%" stop-color="#ff0000" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+
+  <rect width="960" height="540" fill="url(#bg2)"/>
+  <rect width="960" height="540" fill="url(#glow2)"/>
+
+  <g opacity="0.5" stroke="#ff0000" stroke-width="1">
+    <line x1="0" y1="180" x2="960" y2="140"/>
+    <line x1="0" y1="400" x2="960" y2="440"/>
+  </g>
+
+  <g stroke="rgba(255,0,0,0.65)" stroke-width="3" fill="none">
+    <polyline points="26,64 26,26 64,26"/>
+    <polyline points="896,26 934,26 934,64"/>
+    <polyline points="26,476 26,514 64,514"/>
+    <polyline points="896,514 934,514 934,476"/>
+  </g>
+
+  <text x="64" y="212" font-family="Arial, Helvetica, sans-serif" font-size="20" letter-spacing="7" fill="#ff5050" font-weight="700">ETKİNLİK</text>
+  <text x="62" y="300" font-family="Arial, Helvetica, sans-serif" font-size="66" font-weight="900" fill="#eeece5" letter-spacing="1">HAFTA SONU</text>
+  <text x="62" y="370" font-family="Arial, Helvetica, sans-serif" font-size="66" font-weight="900" fill="#eeece5" letter-spacing="1">ÖZEL YARIŞ</text>
+  <rect x="64" y="396" width="72" height="4" fill="#ff0000"/>
+  <text x="64" y="440" font-family="Arial, Helvetica, sans-serif" font-size="23" fill="#c7c9cf">Cuma 21:00 — ödüllü yarış etkinliği</text>
+</svg>
