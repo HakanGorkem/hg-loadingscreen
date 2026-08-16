@@ -71,7 +71,7 @@ const Config = {
     // discord-staff-sync/ (see README.md) and paste the raw GitHub URL
     // it publishes here, e.g.:
     // "https://raw.githubusercontent.com/YOUR_USERNAME/YOUR_REPO/main/discord-staff-sync/staff.json"
-    StaffSyncUrl: "",
+    StaffSyncUrl: "https://raw.githubusercontent.com/HakanGorkem/hg-loadingscreen/main/discord-staff-sync/staff.json",
 
     // Used when StaffSyncUrl is empty, or if it can't be reached
     StaffFallback: [
@@ -86,22 +86,7 @@ const Config = {
             image: "assets/cenker.png"
         },
         {
-            name: "Noetᑫᵘᵃˢᵃʳ",
-            role: "Founder",
-            image: ""
-        },
-        {
-            name: "Tolgaᑫᵘᵃˢᵃʳ",
-            role: "Management",
-            image: ""
-        },
-        {
             name: "Deadzoneᑫᵘᵃˢᵃʳ",
-            role: "Senior Developer",
-            image: ""
-        },
-        {
-            name: "Emreᑫᵘᵃˢᵃʳ",
             role: "Senior Developer",
             image: ""
         },
