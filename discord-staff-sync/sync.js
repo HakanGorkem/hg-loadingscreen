@@ -107,18 +107,20 @@ async function syncStaff(guild) {
 
 function parseChangelogMessage(message) {
     const lines = message.content.split('\n').map((l) => l.trim()).filter(Boolean);
-    if (lines.length === 0) return null;
 
     let version = '';
     let bodyLines = lines;
 
-    if (/^v?\d+(\.\d+){1,2}$/i.test(lines[0])) {
+    if (lines.length > 0 && /^v?\d+(\.\d+){1,2}$/i.test(lines[0])) {
         version = lines[0].toLowerCase().startsWith('v') ? lines[0] : `v${lines[0]}`;
         bodyLines = lines.slice(1);
     }
 
     const changes = bodyLines.map((l) => l.replace(/^[-*•]\s*/, '')).filter(Boolean);
-    if (changes.length === 0) return null;
+    const image = message.attachments.find((a) => a.contentType && a.contentType.startsWith('image/'))?.url || '';
+
+    // Skip messages with neither text nor an image (e.g. reactions-only, empty posts)
+    if (changes.length === 0 && !image) return null;
 
     const date = message.createdAt.toLocaleDateString('en-GB', {
         day: 'numeric',
@@ -126,7 +128,7 @@ function parseChangelogMessage(message) {
         year: 'numeric',
     });
 
-    return { version, date, changes };
+    return { version, date, changes, image };
 }
 
 async function syncChangelog() {

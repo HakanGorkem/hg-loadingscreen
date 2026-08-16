@@ -151,6 +151,15 @@ function createChangelogEntry(entry) {
     const wrap = document.createElement('div');
     wrap.className = 'changelog-entry';
 
+    if (entry.image && entry.image.trim() !== '') {
+        const img = document.createElement('img');
+        img.className = 'changelog-entry-image';
+        img.src = entry.image;
+        img.alt = entry.version || '';
+        img.onerror = () => img.remove();
+        wrap.appendChild(img);
+    }
+
     const header = document.createElement('div');
     header.className = 'changelog-entry-header';
 

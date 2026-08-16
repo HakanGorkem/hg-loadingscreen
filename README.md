@@ -64,7 +64,7 @@ v1.4.0
 - Added X
 - Fixed Y
 ```
-The first line is used as the version if it looks like one (e.g. `v1.4.0` or `1.4.0`); every other line becomes a bullet point. The most recent 10 messages are synced.
+The first line is used as the version if it looks like one (e.g. `v1.4.0` or `1.4.0`); every other line becomes a bullet point. If you attach an image to the message, it's shown as a banner at the top of that entry's card. The most recent 10 messages are synced.
 
 If either sync URL is ever unreachable, the loading screen silently falls back to the static list — it never shows a broken panel.
 

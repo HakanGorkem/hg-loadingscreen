@@ -733,6 +733,14 @@ body {
     padding: 16px 18px;
 }
 
+.changelog-entry-image {
+    display: block;
+    width: calc(100% + 36px);
+    margin: -16px -18px 14px;
+    max-height: 160px;
+    object-fit: cover;
+}
+
 .changelog-entry-header {
     display: flex;
     align-items: baseline;
