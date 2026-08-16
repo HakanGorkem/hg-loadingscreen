@@ -357,11 +357,21 @@ body {
     box-shadow: 0 0 6px rgba(var(--brand-color-rgb), 0.6);
 }
 
-/* --- SAĞ ÜST (YÖNETİM KADROSU / PERSONEL DOSYASI) --- */
-.staff-toggle-btn {
+/* --- SAĞ ÜST (AÇILIR PANEL BUTONLARI: YÖNETİM KADROSU / GÜNCELLEME NOTLARI) --- */
+.top-actions {
     position: fixed;
     top: var(--gutter-y);
     right: var(--gutter-x);
+    z-index: 5;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 10px;
+    animation: fade-in 0.9s ease both;
+    animation-delay: 0.35s;
+}
+
+.panel-toggle-btn {
     background: rgba(12, 12, 15, 0.55);
     border: 1px solid var(--panel-line);
     border-left: 2px solid rgba(var(--brand-color-rgb), 0.6);
@@ -378,23 +388,23 @@ body {
     gap: 12px;
     box-shadow: 0 8px 24px rgba(0,0,0,0.4);
     backdrop-filter: blur(6px);
-    z-index: 5;
-    animation: fade-in 0.9s ease both;
-    animation-delay: 0.35s;
 }
 
-.staff-toggle-btn:hover {
+.panel-toggle-btn:hover {
     background: rgba(var(--brand-color-rgb), 0.1);
     border-left-color: var(--brand-color);
     transform: translateX(3px);
 }
 
-.staff-toggle-btn i {
+.panel-toggle-btn i {
     color: var(--brand-color);
     font-size: 1rem;
 }
 
-.staff-sidebar {
+/* Yönetim Kadrosu ve Güncelleme Notları panelleri aynı "kayan panel"
+   iskeletini paylaşır; içerik alanları (.staff-list / .changelog-list)
+   kendi kurallarında ayrı tanımlanır. */
+.side-panel {
     position: fixed;
     top: 0;
     right: 0;
@@ -412,7 +422,7 @@ body {
     box-shadow: -20px 0 60px rgba(0,0,0,0.7);
 }
 
-.staff-sidebar.active {
+.side-panel.active {
     transform: translateX(0);
 }
 
@@ -563,6 +573,77 @@ body {
     letter-spacing: 0.5px;
     text-transform: uppercase;
     color: var(--steel);
+}
+
+/* --- GÜNCELLEME NOTLARI PANELİ --- */
+.changelog-list {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+    overflow-y: auto;
+    padding-right: 6px;
+}
+
+.changelog-list::-webkit-scrollbar { width: 4px; }
+.changelog-list::-webkit-scrollbar-thumb { background: rgba(var(--brand-color-rgb), 0.45); border-radius: 4px; }
+
+.changelog-entry {
+    background: var(--panel);
+    border: 1px solid var(--panel-line);
+    border-left: 2px solid var(--brand-color);
+    padding: 16px 18px;
+}
+
+.changelog-entry-header {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 10px;
+    margin-bottom: 12px;
+}
+
+.changelog-version {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.85rem;
+    font-weight: 700;
+    color: var(--brand-color);
+    letter-spacing: 0.5px;
+    white-space: nowrap;
+}
+
+.changelog-date {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.68rem;
+    color: var(--steel-dim);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    text-align: right;
+}
+
+.changelog-changes {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 7px;
+}
+
+.changelog-changes li {
+    font-family: 'Inter', sans-serif;
+    font-size: 0.85rem;
+    color: var(--paper);
+    line-height: 1.5;
+    padding-left: 14px;
+    position: relative;
+}
+
+.changelog-changes li::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0.55em;
+    width: 5px;
+    height: 5px;
+    background: var(--brand-color);
 }
 
 /* --- ALT DOCK (DURUM / İLERLEME / SES) --- */
@@ -726,7 +807,7 @@ kbd {
     .scanline, .status-dot, .progress::after {
         animation: none !important;
     }
-    .hud-frame, .panel, .staff-toggle-btn, .dock {
+    .hud-frame, .panel, .top-actions, .dock {
         animation: none !important;
         opacity: 1;
     }

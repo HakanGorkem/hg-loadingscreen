@@ -15,6 +15,10 @@ const socialLinksContainer = document.getElementById('social-links');
 const announceSlider = document.getElementById('announce-slider');
 const announceTrack = document.getElementById('announce-track');
 const announceDots = document.getElementById('announce-dots');
+const changelogBtn = document.getElementById('changelog-btn');
+const changelogSidebar = document.getElementById('changelog-sidebar');
+const changelogCloseBtn = document.getElementById('changelog-close-btn');
+const changelogList = document.getElementById('changelog-list');
 
 // --- RGB ÇEVİRİCİ (CSS GÖLGELERİ İÇİN) ---
 // Hex renk kodunu CSS'in kullanabileceği şeffaf gölgelere çevirir
@@ -75,6 +79,47 @@ function init() {
 
     // 7. Duyuru Slaytını Yükle
     loadAnnouncements();
+
+    // 8. Güncelleme Notlarını Yükle
+    loadChangelog();
+}
+
+// --- GÜNCELLEME NOTLARI PANELİ ---
+function createChangelogEntry(entry) {
+    const wrap = document.createElement('div');
+    wrap.className = 'changelog-entry';
+
+    const header = document.createElement('div');
+    header.className = 'changelog-entry-header';
+
+    const version = document.createElement('span');
+    version.className = 'changelog-version';
+    version.textContent = entry.version || "";
+
+    const date = document.createElement('span');
+    date.className = 'changelog-date';
+    date.textContent = entry.date || "";
+
+    header.appendChild(version);
+    header.appendChild(date);
+
+    const list = document.createElement('ul');
+    list.className = 'changelog-changes';
+    (entry.changes || []).forEach((change) => {
+        const li = document.createElement('li');
+        li.textContent = change;
+        list.appendChild(li);
+    });
+
+    wrap.appendChild(header);
+    wrap.appendChild(list);
+    return wrap;
+}
+
+function loadChangelog() {
+    (Config.Changelog || []).forEach((entry) => {
+        changelogList.appendChild(createChangelogEntry(entry));
+    });
 }
 
 // --- DUYURU SLAYTI ---
@@ -261,11 +306,21 @@ function loadSocialLinks() {
 
 // --- MENÜ VE TUŞ ETKİLEŞİMLERİ ---
 staffBtn.addEventListener('click', () => {
+    changelogSidebar.classList.remove('active');
     staffSidebar.classList.add('active');
 });
 
 closeBtn.addEventListener('click', () => {
     staffSidebar.classList.remove('active');
+});
+
+changelogBtn.addEventListener('click', () => {
+    staffSidebar.classList.remove('active');
+    changelogSidebar.classList.add('active');
+});
+
+changelogCloseBtn.addEventListener('click', () => {
+    changelogSidebar.classList.remove('active');
 });
 
 bgMusic.addEventListener('play', () => {

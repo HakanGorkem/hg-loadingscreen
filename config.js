@@ -28,6 +28,35 @@ const Config = {
         { image: "assets/announce3.svg", alt: "Açılışa özel etkinlikler - 28-31 Ağustos, detaylar için Discord duyurularını takip edin" },
     ],
 
+    // Güncelleme Notları — sağ üstteki "Güncelleme Notları" panelinde
+    // gösterilir. En yeni sürümü en üste ekleyin.
+    Changelog: [
+        {
+            version: "v1.3.0",
+            date: "16 Ağustos 2026",
+            changes: [
+                "Sosyal medya butonlarının altına otomatik kayan duyuru slaytı eklendi",
+                "Yönetim kadrosu artık Discord'dan otomatik çekiliyor (rol ve çevrimiçi durumu dahil)",
+                "Güncelleme notları paneli eklendi",
+            ],
+        },
+        {
+            version: "v1.2.0",
+            date: "16 Ağustos 2026",
+            changes: [
+                "Arayüz baştan tasarlandı (sol konsol paneli + alt durum çubuğu)",
+                "İlerleme çubuğundaki hesaplama hataları düzeltildi",
+            ],
+        },
+        {
+            version: "v1.0.0",
+            date: "22 Temmuz 2026",
+            changes: [
+                "İlk sürüm yayınlandı",
+            ],
+        },
+    ],
+
     // Yönetim Kadrosu — Discord sunucusundan otomatik çekilir
     // (bkz. discord-staff-sync/). Aşağıdaki adresteki JSON her ~20 dakikada
     // bir güncellenir. Kendi deposunu kurduktan sonra bu URL'yi

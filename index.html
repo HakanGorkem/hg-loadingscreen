@@ -68,13 +68,19 @@
         </div>
     </aside>
 
-    <!-- 3. Sağ Üst - Yönetim Kadrosu (Açılır Dosya Paneli) -->
-    <button class="staff-toggle-btn" id="staff-btn" type="button">
-        <i class="fa-solid fa-address-card"></i>
-        <span>Yönetim Kadrosu</span>
-    </button>
+    <!-- 3. Sağ Üst - Açılır Paneller (Yönetim Kadrosu / Güncelleme Notları) -->
+    <div class="top-actions">
+        <button class="panel-toggle-btn" id="staff-btn" type="button">
+            <i class="fa-solid fa-address-card"></i>
+            <span>Yönetim Kadrosu</span>
+        </button>
+        <button class="panel-toggle-btn" id="changelog-btn" type="button">
+            <i class="fa-solid fa-bullhorn"></i>
+            <span>Güncelleme Notları</span>
+        </button>
+    </div>
 
-    <div class="staff-sidebar" id="staff-sidebar">
+    <div class="side-panel staff-sidebar" id="staff-sidebar">
         <div class="sidebar-header">
             <div class="sidebar-heading">
                 <span class="sidebar-eyebrow">Personel Dosyası</span>
@@ -83,6 +89,17 @@
             <i class="fa-solid fa-xmark close-btn" id="close-btn"></i>
         </div>
         <div class="staff-list" id="staff-list"></div>
+    </div>
+
+    <div class="side-panel changelog-sidebar" id="changelog-sidebar">
+        <div class="sidebar-header">
+            <div class="sidebar-heading">
+                <span class="sidebar-eyebrow">Sürüm Geçmişi</span>
+                <h3>Güncelleme Notları</h3>
+            </div>
+            <i class="fa-solid fa-xmark close-btn" id="changelog-close-btn"></i>
+        </div>
+        <div class="changelog-list" id="changelog-list"></div>
     </div>
 
     <!-- 4. Alt Dock - Durum / İlerleme / Ses -->
