@@ -4,6 +4,7 @@
 const Translations = {
     en: {
         loadingDefault: "Loading...",
+        loadingDownload: "Downloading Resources...",
         loadingSystems: "Loading Systems...",
         loadingFiles: "Loading Files...",
         infoCenterBtn: "Info Center",
@@ -17,6 +18,7 @@ const Translations = {
     },
     tr: {
         loadingDefault: "Yükleniyor...",
+        loadingDownload: "Kaynaklar İndiriliyor...",
         loadingSystems: "Sistemler Yükleniyor...",
         loadingFiles: "Dosyalar Yükleniyor...",
         infoCenterBtn: "Bilgi Merkezi",
@@ -30,6 +32,7 @@ const Translations = {
     },
     es: {
         loadingDefault: "Cargando...",
+        loadingDownload: "Descargando Recursos...",
         loadingSystems: "Cargando Sistemas...",
         loadingFiles: "Cargando Archivos...",
         infoCenterBtn: "Centro de Información",
@@ -43,6 +46,7 @@ const Translations = {
     },
     pt: {
         loadingDefault: "Carregando...",
+        loadingDownload: "Baixando Recursos...",
         loadingSystems: "Carregando Sistemas...",
         loadingFiles: "Carregando Arquivos...",
         infoCenterBtn: "Central de Informações",
@@ -56,6 +60,7 @@ const Translations = {
     },
     fr: {
         loadingDefault: "Chargement...",
+        loadingDownload: "Téléchargement des Ressources...",
         loadingSystems: "Chargement des Systèmes...",
         loadingFiles: "Chargement des Fichiers...",
         infoCenterBtn: "Centre d'Information",
@@ -69,6 +74,7 @@ const Translations = {
     },
     de: {
         loadingDefault: "Wird geladen...",
+        loadingDownload: "Ressourcen werden heruntergeladen...",
         loadingSystems: "Systeme werden geladen...",
         loadingFiles: "Dateien werden geladen...",
         infoCenterBtn: "Infozentrum",
@@ -82,6 +88,7 @@ const Translations = {
     },
     ru: {
         loadingDefault: "Загрузка...",
+        loadingDownload: "Загрузка ресурсов...",
         loadingSystems: "Загрузка систем...",
         loadingFiles: "Загрузка файлов...",
         infoCenterBtn: "Инфоцентр",
@@ -95,6 +102,7 @@ const Translations = {
     },
     pl: {
         loadingDefault: "Ładowanie...",
+        loadingDownload: "Pobieranie zasobów...",
         loadingSystems: "Ładowanie systemów...",
         loadingFiles: "Ładowanie plików...",
         infoCenterBtn: "Centrum Informacji",
@@ -108,6 +116,7 @@ const Translations = {
     },
     it: {
         loadingDefault: "Caricamento...",
+        loadingDownload: "Download delle Risorse...",
         loadingSystems: "Caricamento Sistemi...",
         loadingFiles: "Caricamento File...",
         infoCenterBtn: "Centro Informazioni",
@@ -121,6 +130,7 @@ const Translations = {
     },
     ar: {
         loadingDefault: "جارٍ التحميل...",
+        loadingDownload: "جارٍ تنزيل الموارد...",
         loadingSystems: "جارٍ تحميل الأنظمة...",
         loadingFiles: "جارٍ تحميل الملفات...",
         infoCenterBtn: "مركز المعلومات",

@@ -425,6 +425,12 @@ let count = 0;
 let thisCount = 0;
 
 const handlers = {
+    // Fires while the client is connecting and downloading/streaming
+    // resources from the server — usually the longest part of joining.
+    loadProgress(data) {
+        setLoadingText('loadingDownload');
+        updateProgress(data.loadFraction * 100);
+    },
     startInitFunctionOrder(data) {
         count = data.count;
     },
