@@ -397,6 +397,22 @@ body {
 .staff-list::-webkit-scrollbar { width: 4px; }
 .staff-list::-webkit-scrollbar-thumb { background: rgba(var(--brand-color-rgb), 0.45); border-radius: 4px; }
 
+.staff-group-heading {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.68rem;
+    font-weight: 600;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: rgba(var(--brand-color-rgb), 0.85);
+    padding-bottom: 6px;
+    margin-top: 10px;
+    border-bottom: 1px solid var(--panel-line);
+}
+
+.staff-group-heading:first-child {
+    margin-top: 0;
+}
+
 .staff-card {
     display: flex;
     align-items: center;

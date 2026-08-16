@@ -101,17 +101,38 @@ function createStaffCard(person) {
 
     const nameEl = document.createElement('h4');
     nameEl.textContent = person.name;
-
-    const roleEl = document.createElement('span');
-    roleEl.textContent = person.role;
-
     info.appendChild(nameEl);
-    info.appendChild(roleEl);
 
     card.appendChild(avatar);
     card.appendChild(info);
 
     return card;
+}
+
+function createStaffGroupHeading(roleName) {
+    const heading = document.createElement('div');
+    heading.className = 'staff-group-heading';
+    heading.textContent = roleName;
+    return heading;
+}
+
+// Rolü ne olursa olsun (Discord'dan gelen sira zaten hiyerarsik, ama
+// StaffFallback karisik siralanmis olsa bile) herkesi kendi rolunun
+// altinda, rolun ilk gorundugu sirayla gruplar.
+function groupStaffByRole(staff) {
+    const order = [];
+    const groups = new Map();
+
+    staff.forEach(person => {
+        const role = person.role || "";
+        if (!groups.has(role)) {
+            groups.set(role, []);
+            order.push(role);
+        }
+        groups.get(role).push(person);
+    });
+
+    return order.map(role => ({ role, members: groups.get(role) }));
 }
 
 async function loadStaff() {
@@ -131,8 +152,11 @@ async function loadStaff() {
         }
     }
 
-    staff.forEach(person => {
-        staffListContainer.appendChild(createStaffCard(person));
+    groupStaffByRole(staff).forEach(group => {
+        staffListContainer.appendChild(createStaffGroupHeading(group.role));
+        group.members.forEach(person => {
+            staffListContainer.appendChild(createStaffCard(person));
+        });
     });
 }
 
