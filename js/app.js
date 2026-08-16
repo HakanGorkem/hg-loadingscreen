@@ -86,6 +86,11 @@ function createStaffCard(person) {
         const img = document.createElement('img');
         img.src = person.image;
         img.alt = person.name || "";
+        // Discord CDN gecici olarak yanit vermezse veya avatar silinmisse
+        // kirik resim yerine bas harfe dus
+        img.onerror = () => {
+            avatar.textContent = (person.name || "?").charAt(0).toUpperCase();
+        };
         avatar.appendChild(img);
     } else {
         avatar.textContent = (person.name || "?").charAt(0).toUpperCase();
