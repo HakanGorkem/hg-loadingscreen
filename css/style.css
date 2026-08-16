@@ -351,43 +351,54 @@ body {
     box-shadow: 0 0 6px rgba(var(--brand-color-rgb), 0.6);
 }
 
-/* --- Top-right actions: language switcher + info center --- */
+/* --- Top-right actions: info center + language switcher, one unified
+   control group (shared background/border) rather than two separate
+   floating buttons --- */
 .top-bar-actions {
     position: fixed;
     top: var(--gutter-y);
     right: var(--gutter-x);
     z-index: 5;
-    display: flex;
-    align-items: flex-start;
-    gap: 10px;
     animation: fade-in 0.9s ease both;
     animation-delay: 0.35s;
 }
 
-.lang-switcher {
-    position: relative;
-}
-
-.lang-toggle-btn {
-    width: 45px;
-    height: 45px;
+.control-group {
     display: flex;
-    align-items: center;
-    justify-content: center;
+    align-items: stretch;
     background: rgba(12, 12, 15, 0.55);
     border: 1px solid var(--panel-line);
     border-left: 2px solid rgba(var(--brand-color-rgb), 0.6);
+    box-shadow: 0 8px 24px rgba(0,0,0,0.4);
+    backdrop-filter: blur(6px);
+}
+
+.control-divider {
+    width: 1px;
+    margin: 8px 0;
+    background: var(--panel-line);
+}
+
+.lang-switcher {
+    position: relative;
+    display: flex;
+}
+
+.lang-toggle-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 16px;
+    background: none;
+    border: none;
     color: var(--brand-color);
     font-size: 1rem;
     cursor: pointer;
-    backdrop-filter: blur(6px);
-    box-shadow: 0 8px 24px rgba(0,0,0,0.4);
-    transition: all 0.3s ease;
+    transition: background 0.25s ease;
 }
 
 .lang-toggle-btn:hover {
     background: rgba(var(--brand-color-rgb), 0.1);
-    border-left-color: var(--brand-color);
 }
 
 .lang-dropdown {
@@ -438,9 +449,8 @@ body {
 }
 
 .panel-toggle-btn {
-    background: rgba(12, 12, 15, 0.55);
-    border: 1px solid var(--panel-line);
-    border-left: 2px solid rgba(var(--brand-color-rgb), 0.6);
+    background: none;
+    border: none;
     color: var(--paper);
     padding: 13px 22px;
     font-family: 'Inter', sans-serif;
@@ -448,18 +458,14 @@ body {
     font-weight: 600;
     letter-spacing: 0.3px;
     cursor: pointer;
-    transition: all 0.3s ease;
+    transition: background 0.25s ease;
     display: flex;
     align-items: center;
     gap: 12px;
-    box-shadow: 0 8px 24px rgba(0,0,0,0.4);
-    backdrop-filter: blur(6px);
 }
 
 .panel-toggle-btn:hover {
     background: rgba(var(--brand-color-rgb), 0.1);
-    border-left-color: var(--brand-color);
-    transform: translateX(3px);
 }
 
 .panel-toggle-btn i {

@@ -52,19 +52,23 @@
         </div>
     </aside>
 
-    <!-- Top-right actions: language switcher + info center -->
+    <!-- Top-right actions: info center + language switcher, merged into one control group -->
     <div class="top-bar-actions">
-        <div class="lang-switcher" id="lang-switcher">
-            <button class="lang-toggle-btn" id="lang-btn" type="button" aria-label="Language">
-                <i class="fa-solid fa-globe"></i>
+        <div class="control-group">
+            <button class="panel-toggle-btn" id="info-btn" type="button">
+                <i class="fa-solid fa-circle-info"></i>
+                <span data-i18n="infoCenterBtn">Info Center</span>
             </button>
-            <div class="lang-dropdown" id="lang-dropdown"></div>
-        </div>
 
-        <button class="panel-toggle-btn" id="info-btn" type="button">
-            <i class="fa-solid fa-circle-info"></i>
-            <span data-i18n="infoCenterBtn">Info Center</span>
-        </button>
+            <div class="control-divider"></div>
+
+            <div class="lang-switcher" id="lang-switcher">
+                <button class="lang-toggle-btn" id="lang-btn" type="button" aria-label="Language">
+                    <i class="fa-solid fa-globe"></i>
+                </button>
+                <div class="lang-dropdown" id="lang-dropdown"></div>
+            </div>
+        </div>
     </div>
 
     <div class="side-panel info-panel" id="info-panel">
