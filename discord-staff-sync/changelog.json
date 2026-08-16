@@ -1,10 +1,11 @@
 [
   {
-    "version": "v1.4.0",
+    "version": "v1.0.0",
     "date": "16 August 2026",
     "changes": [
-      "Şunu ekledik",
-      "Bunu düzelttik"
-    ]
+      "Sunucumuz resmi olarak açılmıştır!",
+      "Karşılaştığınız hataları lütfen yetkili ekibimize bildirin."
+    ],
+    "image": "https://cdn.discordapp.com/attachments/1526993103146193006/1538517070176591982/walpaper.png?ex=6a82f72d&is=6a81a5ad&hm=c68559b4f28e8fb6245150bc95be0d1c27f939c3b4399ad2e1ac8ccff1097f8f&"
   }
 ]
