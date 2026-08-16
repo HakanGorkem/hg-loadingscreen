@@ -79,8 +79,16 @@ function createStaffCard(person) {
     const card = document.createElement('div');
     card.className = 'staff-card';
 
+    // Avatar, kose kirpma efekti (clip-path) uyguladigi icin durum
+    // noktasini avatarin ICINE degil, disina/kardesine koyuyoruz —
+    // yoksa clip-path onu da kirpip gorunmez yapar.
+    const avatarWrap = document.createElement('div');
+    avatarWrap.className = 'staff-avatar-wrap';
+
     const avatar = document.createElement('div');
     avatar.className = 'staff-avatar';
+
+    const initial = (person.name || "?").charAt(0).toUpperCase();
 
     if (person.image && person.image.trim() !== "") {
         const img = document.createElement('img');
@@ -89,11 +97,24 @@ function createStaffCard(person) {
         // Discord CDN gecici olarak yanit vermezse veya avatar silinmisse
         // kirik resim yerine bas harfe dus
         img.onerror = () => {
-            avatar.textContent = (person.name || "?").charAt(0).toUpperCase();
+            img.remove();
+            avatar.prepend(document.createTextNode(initial));
         };
         avatar.appendChild(img);
     } else {
-        avatar.textContent = (person.name || "?").charAt(0).toUpperCase();
+        avatar.appendChild(document.createTextNode(initial));
+    }
+
+    avatarWrap.appendChild(avatar);
+
+    // Discord'dan cevrimici/cevrimdisi bilgisi geldiyse kucuk bir durum
+    // noktasi ekle; StaffFallback (statik yedek liste) icin bu bilgi
+    // yok, o yuzden nokta hic gosterilmiyor.
+    if (person.status === 'online' || person.status === 'offline') {
+        const statusDot = document.createElement('span');
+        statusDot.className = 'staff-status-dot ' + person.status;
+        statusDot.title = person.status === 'online' ? 'Çevrimiçi' : 'Çevrimdışı';
+        avatarWrap.appendChild(statusDot);
     }
 
     const info = document.createElement('div');
@@ -103,7 +124,7 @@ function createStaffCard(person) {
     nameEl.textContent = person.name;
     info.appendChild(nameEl);
 
-    card.appendChild(avatar);
+    card.appendChild(avatarWrap);
     card.appendChild(info);
 
     return card;

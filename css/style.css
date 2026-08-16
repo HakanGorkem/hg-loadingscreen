@@ -430,10 +430,14 @@ body {
     transform: translateX(-2px);
 }
 
+.staff-avatar-wrap {
+    position: relative;
+    flex-shrink: 0;
+}
+
 .staff-avatar {
     width: 48px;
     height: 48px;
-    flex-shrink: 0;
     background: #17171b;
     border: 1px solid rgba(var(--brand-color-rgb), 0.35);
     display: flex;
@@ -451,6 +455,28 @@ body {
     width: 100%;
     height: 100%;
     object-fit: cover;
+}
+
+/* Cevrimici/cevrimdisi durumu — avatarin disinda (clip-path'ten etkilenmez) */
+.staff-status-dot {
+    position: absolute;
+    bottom: -2px;
+    right: -2px;
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    border: 2px solid var(--panel);
+    z-index: 2;
+}
+
+.staff-status-dot.online {
+    background: #23a55a;
+    box-shadow: 0 0 6px rgba(35, 165, 90, 0.7);
+}
+
+.staff-status-dot.offline {
+    background: var(--brand-color);
+    box-shadow: 0 0 6px rgba(var(--brand-color-rgb), 0.6);
 }
 
 .staff-info h4 {

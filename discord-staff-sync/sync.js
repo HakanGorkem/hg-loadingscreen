@@ -32,13 +32,17 @@ const ROLE_HIERARCHY = [
 ];
 
 const client = new Client({
-    intents: [GatewayIntentBits.Guilds, GatewayIntentBits.GuildMembers],
+    intents: [
+        GatewayIntentBits.Guilds,
+        GatewayIntentBits.GuildMembers,
+        GatewayIntentBits.GuildPresences,
+    ],
 });
 
 client.once('ready', async () => {
     try {
         const guild = await client.guilds.fetch(GUILD_ID);
-        const members = await guild.members.fetch();
+        const members = await guild.members.fetch({ withPresences: true });
 
         const staff = [];
         const seen = new Set();
@@ -51,10 +55,20 @@ client.once('ready', async () => {
             for (const member of withRole) {
                 if (seen.has(member.id)) continue;
                 seen.add(member.id);
+
+                // online/idle/dnd -> Discord'da "acik" sayilir, sadece
+                // gercekten cevrimdisiysa (presence yok) kirmizi gosterilir
+                const presenceStatus = member.presence?.status;
+                const isOnline =
+                    presenceStatus === 'online' ||
+                    presenceStatus === 'idle' ||
+                    presenceStatus === 'dnd';
+
                 staff.push({
                     name: member.displayName,
                     role: roleInfo.name,
                     image: member.displayAvatarURL({ extension: 'png', size: 128 }),
+                    status: isOnline ? 'online' : 'offline',
                 });
             }
         }
