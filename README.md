@@ -35,29 +35,38 @@ All settings live in `config.js`. Every field has an inline comment explaining w
 | `Links` | Store / Discord / YouTube buttons — leave a URL as `""` to hide that button |
 | `Language` | Default language and whether players can switch it themselves |
 | `AnnouncementSlider` | Slide interval and the list of images to rotate |
-| `Changelog` | Entries shown in the Info Center's Updates tab |
+| `ChangelogSyncUrl` / `ChangelogFallback` | Live Discord sync URL (optional) and the static list shown in the Updates tab |
 | `StaffSyncUrl` / `StaffFallback` | Live Discord sync URL (optional) and the static fallback list |
 
 Theme color, logo and background accept any file you like — no fixed dimensions are required, but a landscape logo and a 16:9 background tend to look best.
 
-## Optional: Live Discord Staff Sync
+## Optional: Live Discord Sync (Staff & Changelog)
 
-By default the staff list uses the static `StaffFallback` array in `config.js`. If you'd rather have it sync automatically from your Discord server (roles, avatars and online status), you can set that up with the included `discord-staff-sync/` bot script. This is entirely optional — skip this section if the static list is enough for you.
+By default the staff list and update notes use the static arrays in `config.js`. If you'd rather have them sync automatically from your Discord server, you can set that up with the included `discord-staff-sync/` bot script — it can pull your staff roster (roles, avatars, online status) and/or your changelog from a dedicated announcements channel. This is entirely optional — skip this section if the static lists are enough for you.
 
 **What you'll need:** a Discord bot application, and a free GitHub account.
 
-1. **Create or reuse a Discord bot** at [discord.com/developers/applications](https://discord.com/developers/applications). Open your bot's **Bot** tab and enable **Server Members Intent** and **Presence Intent**. Copy the bot token.
-2. **Invite the bot** to your server with permission to view members.
-3. **Edit `discord-staff-sync/sync.js`** — at the top of the file, set `GUILD_ID` to your Discord server's ID, and fill in `ROLE_HIERARCHY` with your staff role IDs, ordered from highest to lowest rank.
+1. **Create or reuse a Discord bot** at [discord.com/developers/applications](https://discord.com/developers/applications). Open your bot's **Bot** tab and enable **Server Members Intent**, **Presence Intent**, and **Message Content Intent** (the last one is only needed for changelog sync). Copy the bot token.
+2. **Invite the bot** to your server with permission to view members and read message history.
+3. **Edit `discord-staff-sync/sync.js`** — at the top of the file, set `GUILD_ID` to your Discord server's ID, fill in `ROLE_HIERARCHY` with your staff role IDs (highest to lowest rank), and set `CHANGELOG_CHANNEL_ID` to your announcements channel's ID (leave it as `''` to skip changelog sync).
 4. **Create a GitHub repository** and push this project to it (`git init`, `git add .`, `git commit`, `git remote add origin <your-repo-url>`, `git push`).
 5. **Add your bot token as a secret** — in your repo, go to **Settings → Secrets and variables → Actions → New repository secret**, name it `DISCORD_BOT_TOKEN`, and paste the token as its value. Never commit the token to the repository itself.
-6. **Set `StaffSyncUrl`** in `config.js` to:
+6. **Set `StaffSyncUrl` and/or `ChangelogSyncUrl`** in `config.js` to:
    ```
    https://raw.githubusercontent.com/YOUR_USERNAME/YOUR_REPO/main/discord-staff-sync/staff.json
+   https://raw.githubusercontent.com/YOUR_USERNAME/YOUR_REPO/main/discord-staff-sync/changelog.json
    ```
-7. **Run it once manually** — in your repo's **Actions** tab, open **Discord Staff Sync** and click **Run workflow**. After it finishes, `discord-staff-sync/staff.json` will exist in your repo and the loading screen will start using it automatically. From then on it refreshes every 5 minutes on its own.
+7. **Run it once manually** — in your repo's **Actions** tab, open **Discord Staff Sync** and click **Run workflow**. After it finishes, `staff.json` and `changelog.json` will exist in your repo and the loading screen will start using them automatically. From then on they refresh every 5 minutes on their own.
 
-If the sync URL is ever unreachable, the loading screen silently falls back to `StaffFallback` — it never shows a broken panel.
+For changelog sync, write posts in your announcements channel like this:
+```
+v1.4.0
+- Added X
+- Fixed Y
+```
+The first line is used as the version if it looks like one (e.g. `v1.4.0` or `1.4.0`); every other line becomes a bullet point. The most recent 10 messages are synced.
+
+If either sync URL is ever unreachable, the loading screen silently falls back to the static list — it never shows a broken panel.
 
 ## License
 

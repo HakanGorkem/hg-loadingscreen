@@ -31,15 +31,15 @@ jobs:
           DISCORD_BOT_TOKEN: ${{ secrets.DISCORD_BOT_TOKEN }}
         run: node sync.js
 
-      - name: Commit updated staff.json
+      - name: Commit updated data
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add discord-staff-sync/staff.json
+          git add discord-staff-sync/staff.json discord-staff-sync/changelog.json
           if git diff --staged --quiet; then
             echo "No changes"
           else
-            git commit -m "chore: update staff list"
+            git commit -m "chore: update staff list and changelog"
             git pull --rebase origin main
             git push
           fi

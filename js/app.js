@@ -178,8 +178,24 @@ function createChangelogEntry(entry) {
     return wrap;
 }
 
-function loadChangelog() {
-    (Config.Changelog || []).forEach((entry) => {
+async function loadChangelog() {
+    let entries = Config.ChangelogFallback || [];
+
+    if (Config.ChangelogSyncUrl) {
+        try {
+            const response = await fetch(Config.ChangelogSyncUrl, { cache: 'no-store' });
+            if (response.ok) {
+                const remote = await response.json();
+                if (Array.isArray(remote) && remote.length > 0) {
+                    entries = remote;
+                }
+            }
+        } catch (e) {
+            // Network error or unreachable — fall back to the static list below.
+        }
+    }
+
+    entries.forEach((entry) => {
         changelogList.appendChild(createChangelogEntry(entry));
     });
 }

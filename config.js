@@ -38,8 +38,17 @@ const Config = {
         ]
     },
 
-    // Update notes shown in the Info Center panel. Add new versions at the top.
-    Changelog: [
+    // Update notes shown in the Info Center panel. Leave ChangelogSyncUrl
+    // empty to always use ChangelogFallback below. To sync automatically
+    // from a Discord channel instead, set CHANGELOG_CHANNEL_ID in
+    // discord-staff-sync/sync.js (see README.md) and paste the raw GitHub
+    // URL it publishes here, e.g.:
+    // "https://raw.githubusercontent.com/YOUR_USERNAME/YOUR_REPO/main/discord-staff-sync/changelog.json"
+    ChangelogSyncUrl: "https://raw.githubusercontent.com/HakanGorkem/hg-loadingscreen/main/discord-staff-sync/changelog.json",
+
+    // Used when ChangelogSyncUrl is empty, or if it can't be reached.
+    // Add new versions at the top.
+    ChangelogFallback: [
         {
             version: "v1.3.0",
             date: "16 August 2026",

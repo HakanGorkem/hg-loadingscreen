@@ -1,9 +1,9 @@
-// Discord Staff Sync
-// Fetches members holding the roles below from your Discord server, sorts
-// them by rank, and writes staff.json. Run periodically by GitHub Actions
+// Discord Staff & Changelog Sync
+// Fetches your staff roster and recent changelog posts from Discord and
+// writes staff.json / changelog.json. Run periodically by GitHub Actions
 // (see .github/workflows/sync-staff.yml). See README.md for full setup
-// instructions — this is an optional feature; the loading screen works
-// fine without it using config.js -> StaffFallback.
+// instructions — both are optional features; the loading screen falls
+// back to config.js -> StaffFallback / ChangelogFallback if unused.
 //
 // ============================================================================
 //  EDIT THIS SECTION FOR YOUR OWN SERVER
@@ -32,6 +32,16 @@ const ROLE_HIERARCHY = [
     { id: '1526741131155607653', name: 'Event Manager' },
 ];
 
+// Channel to pull changelog / update-notes posts from. Set to '' to skip
+// changelog sync entirely. Write posts in this channel like:
+//   v1.4.0
+//   - Added X
+//   - Fixed Y
+// The first line is used as the version if it looks like one (e.g. "v1.4.0"
+// or "1.4.0"); every other line becomes a bullet point.
+const CHANGELOG_CHANNEL_ID = '1526993103146193006';
+const CHANGELOG_MESSAGE_LIMIT = 10;
+
 // ============================================================================
 //  Below this line: sync logic. No changes needed.
 // ============================================================================
@@ -52,44 +62,89 @@ const client = new Client({
         GatewayIntentBits.Guilds,
         GatewayIntentBits.GuildMembers,
         GatewayIntentBits.GuildPresences,
+        GatewayIntentBits.GuildMessages,
+        GatewayIntentBits.MessageContent,
     ],
 });
+
+function writeJson(fileName, data) {
+    const outPath = path.join(__dirname, fileName);
+    fs.writeFileSync(outPath, JSON.stringify(data, null, 2) + '\n');
+}
+
+async function syncStaff(guild) {
+    const members = await guild.members.fetch({ withPresences: true });
+    const staff = [];
+    const seen = new Set();
+
+    for (const roleInfo of ROLE_HIERARCHY) {
+        const withRole = [...members.values()]
+            .filter((m) => !m.user.bot && m.roles.cache.has(roleInfo.id))
+            .sort((a, b) => a.displayName.localeCompare(b.displayName));
+
+        for (const member of withRole) {
+            if (seen.has(member.id)) continue;
+            seen.add(member.id);
+
+            const presenceStatus = member.presence?.status;
+            const isOnline =
+                presenceStatus === 'online' ||
+                presenceStatus === 'idle' ||
+                presenceStatus === 'dnd';
+
+            staff.push({
+                name: member.displayName,
+                role: roleInfo.name,
+                image: member.displayAvatarURL({ extension: 'png', size: 128 }),
+                status: isOnline ? 'online' : 'offline',
+            });
+        }
+    }
+
+    writeJson('staff.json', staff);
+    console.log(`staff.json written (${staff.length} members).`);
+}
+
+function parseChangelogMessage(message) {
+    const lines = message.content.split('\n').map((l) => l.trim()).filter(Boolean);
+    if (lines.length === 0) return null;
+
+    let version = '';
+    let bodyLines = lines;
+
+    if (/^v?\d+(\.\d+){1,2}$/i.test(lines[0])) {
+        version = lines[0].toLowerCase().startsWith('v') ? lines[0] : `v${lines[0]}`;
+        bodyLines = lines.slice(1);
+    }
+
+    const changes = bodyLines.map((l) => l.replace(/^[-*•]\s*/, '')).filter(Boolean);
+    if (changes.length === 0) return null;
+
+    const date = message.createdAt.toLocaleDateString('en-GB', {
+        day: 'numeric',
+        month: 'long',
+        year: 'numeric',
+    });
+
+    return { version, date, changes };
+}
+
+async function syncChangelog() {
+    if (!CHANGELOG_CHANNEL_ID) return;
+
+    const channel = await client.channels.fetch(CHANGELOG_CHANNEL_ID);
+    const messages = await channel.messages.fetch({ limit: CHANGELOG_MESSAGE_LIMIT });
+    const changelog = [...messages.values()].map(parseChangelogMessage).filter(Boolean);
+
+    writeJson('changelog.json', changelog);
+    console.log(`changelog.json written (${changelog.length} entries).`);
+}
 
 client.once('ready', async () => {
     try {
         const guild = await client.guilds.fetch(GUILD_ID);
-        const members = await guild.members.fetch({ withPresences: true });
-
-        const staff = [];
-        const seen = new Set();
-
-        for (const roleInfo of ROLE_HIERARCHY) {
-            const withRole = [...members.values()]
-                .filter((m) => !m.user.bot && m.roles.cache.has(roleInfo.id))
-                .sort((a, b) => a.displayName.localeCompare(b.displayName));
-
-            for (const member of withRole) {
-                if (seen.has(member.id)) continue;
-                seen.add(member.id);
-
-                const presenceStatus = member.presence?.status;
-                const isOnline =
-                    presenceStatus === 'online' ||
-                    presenceStatus === 'idle' ||
-                    presenceStatus === 'dnd';
-
-                staff.push({
-                    name: member.displayName,
-                    role: roleInfo.name,
-                    image: member.displayAvatarURL({ extension: 'png', size: 128 }),
-                    status: isOnline ? 'online' : 'offline',
-                });
-            }
-        }
-
-        const outPath = path.join(__dirname, 'staff.json');
-        fs.writeFileSync(outPath, JSON.stringify(staff, null, 2) + '\n');
-        console.log(`staff.json written (${staff.length} members).`);
+        await syncStaff(guild);
+        await syncChangelog();
     } catch (err) {
         console.error('Sync failed:', err);
         process.exitCode = 1;
