@@ -4,9 +4,11 @@ const serverLogo = document.getElementById('server-logo');
 const serverName = document.getElementById('server-name');
 const bgMusic = document.getElementById('bg-music');
 const staffListContainer = document.getElementById('staff-list');
-const staffBtn = document.getElementById('staff-btn');
-const staffSidebar = document.getElementById('staff-sidebar');
-const closeBtn = document.getElementById('close-btn');
+const infoBtn = document.getElementById('info-btn');
+const infoPanel = document.getElementById('info-panel');
+const infoCloseBtn = document.getElementById('info-close-btn');
+const panelTabs = document.querySelectorAll('.panel-tab');
+const tabPanels = document.querySelectorAll('.tab-panel');
 const volumeIcon = document.getElementById('volume-icon');
 const progressBar = document.getElementById('progress');
 const loadingText = document.getElementById('loading-text');
@@ -15,9 +17,6 @@ const socialLinksContainer = document.getElementById('social-links');
 const announceSlider = document.getElementById('announce-slider');
 const announceTrack = document.getElementById('announce-track');
 const announceDots = document.getElementById('announce-dots');
-const changelogBtn = document.getElementById('changelog-btn');
-const changelogSidebar = document.getElementById('changelog-sidebar');
-const changelogCloseBtn = document.getElementById('changelog-close-btn');
 const changelogList = document.getElementById('changelog-list');
 
 // --- RGB ÇEVİRİCİ (CSS GÖLGELERİ İÇİN) ---
@@ -305,22 +304,21 @@ function loadSocialLinks() {
 }
 
 // --- MENÜ VE TUŞ ETKİLEŞİMLERİ ---
-staffBtn.addEventListener('click', () => {
-    changelogSidebar.classList.remove('active');
-    staffSidebar.classList.add('active');
+infoBtn.addEventListener('click', () => {
+    infoPanel.classList.add('active');
 });
 
-closeBtn.addEventListener('click', () => {
-    staffSidebar.classList.remove('active');
+infoCloseBtn.addEventListener('click', () => {
+    infoPanel.classList.remove('active');
 });
 
-changelogBtn.addEventListener('click', () => {
-    staffSidebar.classList.remove('active');
-    changelogSidebar.classList.add('active');
-});
-
-changelogCloseBtn.addEventListener('click', () => {
-    changelogSidebar.classList.remove('active');
+panelTabs.forEach((tab) => {
+    tab.addEventListener('click', () => {
+        panelTabs.forEach((t) => t.classList.remove('active'));
+        tabPanels.forEach((p) => p.classList.remove('active'));
+        tab.classList.add('active');
+        document.getElementById('tab-' + tab.dataset.tab).classList.add('active');
+    });
 });
 
 bgMusic.addEventListener('play', () => {

@@ -68,38 +68,36 @@
         </div>
     </aside>
 
-    <!-- 3. Sağ Üst - Açılır Paneller (Yönetim Kadrosu / Güncelleme Notları) -->
-    <div class="top-actions">
-        <button class="panel-toggle-btn" id="staff-btn" type="button">
-            <i class="fa-solid fa-address-card"></i>
-            <span>Yönetim Kadrosu</span>
-        </button>
-        <button class="panel-toggle-btn" id="changelog-btn" type="button">
-            <i class="fa-solid fa-bullhorn"></i>
-            <span>Güncelleme Notları</span>
-        </button>
-    </div>
+    <!-- 3. Sağ Üst - Bilgi Merkezi (Yönetim Kadrosu + Güncelleme Notları, tek panel/sekmeli) -->
+    <button class="panel-toggle-btn info-toggle-btn" id="info-btn" type="button">
+        <i class="fa-solid fa-circle-info"></i>
+        <span>Bilgi Merkezi</span>
+    </button>
 
-    <div class="side-panel staff-sidebar" id="staff-sidebar">
+    <div class="side-panel info-panel" id="info-panel">
         <div class="sidebar-header">
             <div class="sidebar-heading">
-                <span class="sidebar-eyebrow">Personel Dosyası</span>
-                <h3>Yönetim Kadromuz</h3>
+                <span class="sidebar-eyebrow">Sunucu Bilgileri</span>
+                <h3>Bilgi Merkezi</h3>
             </div>
-            <i class="fa-solid fa-xmark close-btn" id="close-btn"></i>
+            <i class="fa-solid fa-xmark close-btn" id="info-close-btn"></i>
         </div>
-        <div class="staff-list" id="staff-list"></div>
-    </div>
 
-    <div class="side-panel changelog-sidebar" id="changelog-sidebar">
-        <div class="sidebar-header">
-            <div class="sidebar-heading">
-                <span class="sidebar-eyebrow">Sürüm Geçmişi</span>
-                <h3>Güncelleme Notları</h3>
-            </div>
-            <i class="fa-solid fa-xmark close-btn" id="changelog-close-btn"></i>
+        <div class="panel-tabs">
+            <button class="panel-tab active" data-tab="staff" type="button">
+                <i class="fa-solid fa-address-card"></i> Personel
+            </button>
+            <button class="panel-tab" data-tab="changelog" type="button">
+                <i class="fa-solid fa-bullhorn"></i> Güncellemeler
+            </button>
         </div>
-        <div class="changelog-list" id="changelog-list"></div>
+
+        <div class="tab-panel active" id="tab-staff">
+            <div class="staff-list" id="staff-list"></div>
+        </div>
+        <div class="tab-panel" id="tab-changelog">
+            <div class="changelog-list" id="changelog-list"></div>
+        </div>
     </div>
 
     <!-- 4. Alt Dock - Durum / İlerleme / Ses -->

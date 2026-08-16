@@ -357,21 +357,14 @@ body {
     box-shadow: 0 0 6px rgba(var(--brand-color-rgb), 0.6);
 }
 
-/* --- SAĞ ÜST (AÇILIR PANEL BUTONLARI: YÖNETİM KADROSU / GÜNCELLEME NOTLARI) --- */
-.top-actions {
+/* --- SAĞ ÜST (BİLGİ MERKEZİ BUTONU: PERSONEL + GÜNCELLEMELER TEK PANELDE) --- */
+.panel-toggle-btn {
     position: fixed;
     top: var(--gutter-y);
     right: var(--gutter-x);
     z-index: 5;
-    display: flex;
-    flex-direction: column;
-    align-items: flex-end;
-    gap: 10px;
     animation: fade-in 0.9s ease both;
     animation-delay: 0.35s;
-}
-
-.panel-toggle-btn {
     background: rgba(12, 12, 15, 0.55);
     border: 1px solid var(--panel-line);
     border-left: 2px solid rgba(var(--brand-color-rgb), 0.6);
@@ -401,9 +394,8 @@ body {
     font-size: 1rem;
 }
 
-/* Yönetim Kadrosu ve Güncelleme Notları panelleri aynı "kayan panel"
-   iskeletini paylaşır; içerik alanları (.staff-list / .changelog-list)
-   kendi kurallarında ayrı tanımlanır. */
+/* Bilgi Merkezi paneli — Personel ve Güncellemeler tek panelin içinde
+   sekmeyle (.panel-tabs / .tab-panel) değişir. */
 .side-panel {
     position: fixed;
     top: 0;
@@ -430,9 +422,80 @@ body {
     display: flex;
     justify-content: space-between;
     align-items: flex-start;
-    margin-bottom: 28px;
+    margin-bottom: 22px;
     padding-bottom: 20px;
     border-bottom: 1px solid var(--panel-line);
+}
+
+.panel-tabs {
+    display: flex;
+    gap: 4px;
+    margin-bottom: 22px;
+    border-bottom: 1px solid var(--panel-line);
+}
+
+.panel-tab {
+    flex: 1;
+    background: none;
+    border: none;
+    color: var(--steel);
+    font-family: 'Inter', sans-serif;
+    font-size: 0.82rem;
+    font-weight: 600;
+    padding: 0 8px 14px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    position: relative;
+    transition: color 0.25s ease;
+}
+
+.panel-tab i {
+    font-size: 0.82rem;
+    color: var(--steel-dim);
+    transition: color 0.25s ease;
+}
+
+.panel-tab::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: -1px;
+    height: 2px;
+    background: transparent;
+    transition: background 0.25s ease;
+}
+
+.panel-tab:hover {
+    color: var(--paper);
+}
+
+.panel-tab.active {
+    color: var(--paper);
+}
+
+.panel-tab.active i {
+    color: var(--brand-color);
+}
+
+.panel-tab.active::after {
+    background: var(--brand-color);
+    box-shadow: 0 0 6px rgba(var(--brand-color-rgb), 0.6);
+}
+
+.tab-panel {
+    display: none;
+    flex: 1;
+    min-height: 0;
+}
+
+.tab-panel.active {
+    display: flex;
+    flex-direction: column;
+    min-height: 0;
 }
 
 .sidebar-eyebrow {
@@ -469,6 +532,8 @@ body {
 .staff-list {
     display: flex;
     flex-direction: column;
+    flex: 1;
+    min-height: 0;
     gap: 12px;
     overflow-y: auto;
     padding-right: 6px;
@@ -579,6 +644,8 @@ body {
 .changelog-list {
     display: flex;
     flex-direction: column;
+    flex: 1;
+    min-height: 0;
     gap: 18px;
     overflow-y: auto;
     padding-right: 6px;
@@ -807,7 +874,7 @@ kbd {
     .scanline, .status-dot, .progress::after {
         animation: none !important;
     }
-    .hud-frame, .panel, .top-actions, .dock {
+    .hud-frame, .panel, .panel-toggle-btn, .dock {
         animation: none !important;
         opacity: 1;
     }

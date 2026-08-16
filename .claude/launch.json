@@ -3,7 +3,7 @@
   "configurations": [
     {
       "name": "hg-loadingscrean",
-      "url": "http://localhost:8199"
+      "url": "http://localhost:8210"
     }
   ]
 }
