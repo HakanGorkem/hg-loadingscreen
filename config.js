@@ -18,6 +18,15 @@ const Config = {
         Youtube: "https://www.youtube.com/@QuasarVRoleplay" // Sunucunun resmi YouTube kanalının bağlantısı
     },
 
+    // Duyuru Slaytı — sosyal medya butonlarının altında otomatik kayan
+    // görsel şeridi. Her görsel birkaç saniyede bir otomatik değişir.
+    // Görsel eklemek için assets/ klasörüne dosyayı koyup buraya yolunu
+    // yazmanız yeterli. Liste boş bırakılırsa slayt alanı hiç görünmez.
+    Announcements: [
+        // { image: "assets/duyuru1.png", alt: "Yeni güncelleme geldi!" },
+        // { image: "assets/duyuru2.png", alt: "Bu hafta sonu özel etkinlik!" },
+    ],
+
     // Yönetim Kadrosu — Discord sunucusundan otomatik çekilir
     // (bkz. discord-staff-sync/). Aşağıdaki adresteki JSON her ~20 dakikada
     // bir güncellenir. Kendi deposunu kurduktan sonra bu URL'yi

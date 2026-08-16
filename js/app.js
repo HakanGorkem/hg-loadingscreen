@@ -12,6 +12,9 @@ const progressBar = document.getElementById('progress');
 const loadingText = document.getElementById('loading-text');
 const loadingPercentage = document.getElementById('loading-percentage');
 const socialLinksContainer = document.getElementById('social-links');
+const announceSlider = document.getElementById('announce-slider');
+const announceTrack = document.getElementById('announce-track');
+const announceDots = document.getElementById('announce-dots');
 
 // --- RGB ÇEVİRİCİ (CSS GÖLGELERİ İÇİN) ---
 // Hex renk kodunu CSS'in kullanabileceği şeffaf gölgelere çevirir
@@ -69,6 +72,52 @@ function init() {
 
     // 6. Sosyal / Harici Bağlantı Butonlarını Yükle
     loadSocialLinks();
+
+    // 7. Duyuru Slaytını Yükle
+    loadAnnouncements();
+}
+
+// --- DUYURU SLAYTI ---
+// Config.js -> Announcements dizisindeki gorselleri sirayla, kayarak
+// gosterir. Dizi bossa slayt alani hic gorunmez.
+function loadAnnouncements() {
+    const items = (Config.Announcements || []).filter(
+        (a) => a && a.image && a.image.trim() !== ""
+    );
+
+    if (items.length === 0) {
+        announceSlider.style.display = "none";
+        return;
+    }
+
+    items.forEach((item) => {
+        const slide = document.createElement('div');
+        slide.className = 'announce-slide';
+
+        const img = document.createElement('img');
+        img.src = item.image;
+        img.alt = item.alt || "";
+
+        slide.appendChild(img);
+        announceTrack.appendChild(slide);
+    });
+
+    if (items.length === 1) return;
+
+    items.forEach((_, i) => {
+        const dot = document.createElement('span');
+        dot.className = 'announce-dot' + (i === 0 ? ' active' : '');
+        announceDots.appendChild(dot);
+    });
+
+    let index = 0;
+    setInterval(() => {
+        index = (index + 1) % items.length;
+        announceTrack.style.transform = `translateX(-${index * 100}%)`;
+        [...announceDots.children].forEach((dot, i) => {
+            dot.classList.toggle('active', i === index);
+        });
+    }, 4500);
 }
 
 // --- YÖNETİM KADROSU FONKSİYONU ---
