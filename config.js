@@ -13,9 +13,9 @@ const Config = {
     // Sosyal / Harici Bağlantılar (Buton olarak sol altta gösterilir)
     // Bir bağlantıyı gizlemek isterseniz değerini "" (boş) bırakmanız yeterli
     Links: {
-        Store: "https://quasarv.com/",      // Sunucunun bağış veya paket satış mağazasının web sitesi linki
+        Store: "https://quasarv.com/market",      // Sunucunun bağış veya paket satış mağazasının web sitesi linki
         Discord: "https://discord.gg/quasarv", // Topluluk Discord sunucusunun davet bağlantısı
-        Youtube: "https://www.youtube.com/@QuasarVRoleplay" // Sunucunun resmi YouTube kanalının bağlantısı
+        Youtube: "https://www.youtube.com/@Game-Of-RedLine" // Sunucunun resmi YouTube kanalının bağlantısı
     },
 
     // Duyuru Slaytı — sosyal medya butonlarının altında otomatik kayan
