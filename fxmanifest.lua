@@ -6,6 +6,7 @@ description 'A configurable, multi-language FiveM loading screen with live Disco
 version '1.3.0'
 
 loadscreen 'index.html'
+loadscreen_cursor 'yes'
 
 files {
     'index.html',
