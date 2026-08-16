@@ -1,10 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap');
 
-/* ==========================================================================
-   TOKENS
-   --brand-color / --brand-color-rgb are injected at runtime by app.js
-   from Config.Server.ThemeColor — keep these two variable names intact.
-   ========================================================================== */
+/* --brand-color / --brand-color-rgb are injected at runtime by app.js
+   from Config.Server.ThemeColor — keep these two variable names intact. */
 :root {
     --brand-color: #ff0000;
     --brand-color-rgb: 255, 0, 0;
@@ -16,7 +13,6 @@
     --steel: #8b8e98;
     --steel-dim: #5a5d66;
 
-    /* Sol konsol paneli ile alt dock'un ortak referans aldığı ölçüler */
     --panel-width: clamp(360px, 34vw, 460px);
     --dock-height: clamp(64px, 9vh, 84px);
     --gutter-x: clamp(28px, 5vw, 64px);
@@ -28,7 +24,6 @@
     to { opacity: 1; }
 }
 
-/* --- TEMEL AYARLAR --- */
 * {
     margin: 0;
     padding: 0;
@@ -49,7 +44,7 @@ body {
     background: rgba(var(--brand-color-rgb), 0.4);
 }
 
-/* --- HUD ÇERÇEVESİ (imza öğesi: taktik köşe braketleri) --- */
+/* --- HUD frame --- */
 .hud-frame {
     position: fixed;
     inset: 0;
@@ -71,7 +66,7 @@ body {
 .corner-bl { bottom: 22px; left: 22px; border-right: none; border-top: none; }
 .corner-br { bottom: 22px; right: 22px; border-left: none; border-top: none; }
 
-/* --- ARKA PLAN VE SİNEMATİK FİLTRELER --- */
+/* --- Background --- */
 .background-container {
     position: fixed;
     top: 0;
@@ -88,7 +83,6 @@ body {
     filter: saturate(0.85) contrast(1.08) brightness(0.75);
 }
 
-/* Film grain — subtle, cheap, gives the "loading screen" a filmic finish */
 .grain {
     position: absolute;
     inset: 0;
@@ -99,7 +93,6 @@ body {
     background-size: 160px 160px;
 }
 
-/* Slow vertical scan sweep — restrained, single pass, not a strobe */
 .scanline {
     position: absolute;
     left: 0;
@@ -134,7 +127,7 @@ body {
         radial-gradient(ellipse at 68% 42%, rgba(0,0,0,0.05) 0%, rgba(0,0,0,0.55) 85%);
 }
 
-/* --- SOL KONSOL PANELİ (LOGO / SLOGAN / BAĞLANTILAR) --- */
+/* --- Left console panel --- */
 .panel {
     position: fixed;
     top: 0;
@@ -187,9 +180,6 @@ body {
     margin-top: 16px;
 }
 
-/* assets/logo.png ~2.4:1 oranında yatay bir wordmark (marka adı zaten
-   logonun içinde tam stilize halde var) — bu yüzden panelin ana görsel
-   unsuru (hero) olarak, panel genişliğine oranlı şekilde büyük gösteriliyor. */
 .logo-container img {
     width: 100%;
     max-width: 320px;
@@ -198,16 +188,23 @@ body {
     filter: drop-shadow(0px 0px 24px rgba(var(--brand-color-rgb), 0.32));
 }
 
-/* Logo görseli marka adını zaten büyük/stilize biçimde içerdiği için
-   burada aynı ismi tekrar yazmak orantısızlık yaratıyordu. Config.Server.Name
-   bağlantısı ve element DOM'da duruyor — yalnızca ikon/amblem türü bir
-   logo kullanılacaksa bu display:none satırını kaldırman yeterli. */
+/* Hidden by default because most bundled logos already contain the server
+   name as part of the artwork. Set Config.Server.ShowNameLabel to true
+   for icon-only logos. */
 #server-name {
     display: none;
+    font-family: 'Bebas Neue', 'Inter', sans-serif;
+    font-size: clamp(1.6rem, 2.2vw, 2.1rem);
+    font-weight: 400;
+    letter-spacing: 2px;
+    line-height: 1.1;
+    text-transform: uppercase;
+    color: var(--paper);
+    text-align: center;
+    margin-top: 14px;
+    text-shadow: 0 0 24px rgba(var(--brand-color-rgb), 0.3);
 }
 
-/* Logoyu alttaki bağlantı listesinden ayıran tam genişlik çizgi
-   (panel'in iç genişliğine — padding'ler hariç — tam oturur) */
 .panel-divider {
     width: 100%;
     height: 3px;
@@ -216,7 +213,7 @@ body {
     box-shadow: 0 0 12px rgba(var(--brand-color-rgb), 0.7);
 }
 
-/* --- SOSYAL / HARİCİ BAĞLANTI BUTONLARI (dikey liste) --- */
+/* --- Social links --- */
 .panel-bottom {
     margin-top: 26px;
     flex: 1;
@@ -291,10 +288,7 @@ body {
     transform: translateX(2px);
 }
 
-/* --- DUYURU SLAYTI ---
-   Yukseklik bilerek vh bazli (aspect-ratio degil): panelde dikey alan
-   sinirli, dar cozunurluklerde (orn. 1280x720) genislige bagli bir oran
-   tasmaya sebep olabilirdi. */
+/* --- Announcement slider --- */
 .announce-slider {
     position: relative;
     margin-top: auto;
@@ -357,14 +351,93 @@ body {
     box-shadow: 0 0 6px rgba(var(--brand-color-rgb), 0.6);
 }
 
-/* --- SAĞ ÜST (BİLGİ MERKEZİ BUTONU: PERSONEL + GÜNCELLEMELER TEK PANELDE) --- */
-.panel-toggle-btn {
+/* --- Top-right actions: language switcher + info center --- */
+.top-bar-actions {
     position: fixed;
     top: var(--gutter-y);
     right: var(--gutter-x);
     z-index: 5;
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
     animation: fade-in 0.9s ease both;
     animation-delay: 0.35s;
+}
+
+.lang-switcher {
+    position: relative;
+}
+
+.lang-toggle-btn {
+    width: 45px;
+    height: 45px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(12, 12, 15, 0.55);
+    border: 1px solid var(--panel-line);
+    border-left: 2px solid rgba(var(--brand-color-rgb), 0.6);
+    color: var(--brand-color);
+    font-size: 1rem;
+    cursor: pointer;
+    backdrop-filter: blur(6px);
+    box-shadow: 0 8px 24px rgba(0,0,0,0.4);
+    transition: all 0.3s ease;
+}
+
+.lang-toggle-btn:hover {
+    background: rgba(var(--brand-color-rgb), 0.1);
+    border-left-color: var(--brand-color);
+}
+
+.lang-dropdown {
+    position: absolute;
+    top: calc(100% + 8px);
+    right: 0;
+    width: 170px;
+    max-height: 280px;
+    overflow-y: auto;
+    background: rgba(8, 8, 10, 0.95);
+    backdrop-filter: blur(14px);
+    border: 1px solid var(--panel-line);
+    box-shadow: 0 20px 40px rgba(0,0,0,0.6);
+    z-index: 30;
+    display: none;
+    flex-direction: column;
+}
+
+.lang-dropdown.active {
+    display: flex;
+}
+
+.lang-option {
+    background: none;
+    border: none;
+    border-bottom: 1px solid var(--panel-line);
+    color: var(--paper);
+    font-family: 'Inter', sans-serif;
+    font-size: 0.82rem;
+    text-align: left;
+    padding: 10px 14px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.lang-option:last-child {
+    border-bottom: none;
+}
+
+.lang-option:hover {
+    background: rgba(var(--brand-color-rgb), 0.08);
+    color: var(--brand-color);
+}
+
+.lang-option.active {
+    color: var(--brand-color);
+    font-weight: 600;
+}
+
+.panel-toggle-btn {
     background: rgba(12, 12, 15, 0.55);
     border: 1px solid var(--panel-line);
     border-left: 2px solid rgba(var(--brand-color-rgb), 0.6);
@@ -394,8 +467,7 @@ body {
     font-size: 1rem;
 }
 
-/* Bilgi Merkezi paneli — Personel ve Güncellemeler tek panelin içinde
-   sekmeyle (.panel-tabs / .tab-panel) değişir. */
+/* --- Info Center panel: Staff and Updates share one panel via tabs --- */
 .side-panel {
     position: fixed;
     top: 0;
@@ -602,7 +674,7 @@ body {
     object-fit: cover;
 }
 
-/* Cevrimici/cevrimdisi durumu — avatarin disinda (clip-path'ten etkilenmez) */
+/* Kept outside .staff-avatar so the clip-path above doesn't crop it off */
 .staff-status-dot {
     position: absolute;
     bottom: -2px;
@@ -640,7 +712,7 @@ body {
     color: var(--steel);
 }
 
-/* --- GÜNCELLEME NOTLARI PANELİ --- */
+/* --- Updates tab --- */
 .changelog-list {
     display: flex;
     flex-direction: column;
@@ -713,7 +785,7 @@ body {
     background: var(--brand-color);
 }
 
-/* --- ALT DOCK (DURUM / İLERLEME / SES) --- */
+/* --- Bottom status bar --- */
 .dock {
     position: fixed;
     left: 0;
@@ -869,19 +941,18 @@ kbd {
     text-shadow: 0 0 10px rgba(255,255,255,0.4);
 }
 
-/* --- ERİŞİLEBİLİRLİK --- */
+/* --- Accessibility --- */
 @media (prefers-reduced-motion: reduce) {
     .scanline, .status-dot, .progress::after {
         animation: none !important;
     }
-    .hud-frame, .panel, .panel-toggle-btn, .dock {
+    .hud-frame, .panel, .top-bar-actions, .dock {
         animation: none !important;
         opacity: 1;
     }
 }
 
-/* Not: Bu bir FiveM loadscreen'i — her zaman oyunun içindeki CEF'te,
-   oyuncunun masaüstü/oyun çözünürlüğünde (1280x720 → 4K/ultrawide) render
-   olur. Telefon/tablet genişliği hiç oluşmayacağı için mobil breakpoint
-   yok; --panel-width ve --gutter-x/--gutter-y zaten clamp() ile bu
-   aralıkta akıcı ölçekleniyor.
+/* This is a FiveM loading screen, always rendered inside the game's CEF
+   at desktop resolution (1280x720 to 4K/ultrawide) — there is no mobile
+   breakpoint, --panel-width and --gutter-x/--gutter-y already scale
+   fluidly across that range via clamp(). */

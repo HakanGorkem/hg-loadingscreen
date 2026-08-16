@@ -1,22 +1,16 @@
 <!DOCTYPE html>
-<html lang="tr">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>HG Loading Screen</title>
 
-    <!-- İkonlar için Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-
-    <!-- Kendi Tasarım Dosyamız -->
     <link rel="stylesheet" href="css/style.css">
-
-    <!-- Müşterinin Ayar Dosyası -->
     <script src="config.js"></script>
 </head>
 <body>
 
-    <!-- HUD Çerçevesi (dört köşe braketi) -->
     <div class="hud-frame" aria-hidden="true">
         <span class="corner corner-tl"></span>
         <span class="corner corner-tr"></span>
@@ -24,7 +18,6 @@
         <span class="corner corner-br"></span>
     </div>
 
-    <!-- 1. Arka Plan ve Sinematik Filtreler -->
     <div class="background-container">
         <div id="bg-media"></div>
         <div class="grain" aria-hidden="true"></div>
@@ -32,35 +25,26 @@
         <div class="overlay"></div>
     </div>
 
-    <!-- 2. Sol Konsol Paneli — Logo / Slogan / Bağlantılar -->
+    <!-- Left console panel -->
     <aside class="panel">
         <div class="panel-top">
             <span class="eyebrow">
                 <i class="fa-solid fa-satellite-dish" aria-hidden="true"></i>
-                QuasarV Roleplay
+                <span id="server-eyebrow"></span>
             </span>
         </div>
 
         <div class="panel-mid">
             <div class="logo-container">
-                <img id="server-logo" src="" alt="Sunucu Logosu">
+                <img id="server-logo" src="" data-i18n-alt="serverLogoAlt" alt="Server Logo">
             </div>
-
-            <!-- Logo görseli marka adını zaten içeriyor; bu başlık config.js'e
-                 bağlı kalsın diye DOM'da duruyor ama görsel olarak kapalı
-                 (bkz. css/style.css: #server-name) -->
             <h2 id="server-name"></h2>
-
-            <!-- Logoyu alttaki bağlantı listesinden ayıran tam genişlik çizgi -->
             <div class="panel-divider"></div>
         </div>
 
         <div class="panel-bottom">
-            <!-- Sosyal / Harici Bağlantılar (config.js -> Links üzerinden yönetilir) -->
             <div class="social-links" id="social-links"></div>
 
-            <!-- Duyuru Slaytı (config.js -> Announcements üzerinden yönetilir;
-                 boşsa js/app.js bu alanı otomatik gizler) -->
             <div class="announce-slider" id="announce-slider">
                 <div class="announce-track" id="announce-track"></div>
                 <div class="announce-dots" id="announce-dots"></div>
@@ -68,27 +52,36 @@
         </div>
     </aside>
 
-    <!-- 3. Sağ Üst - Bilgi Merkezi (Yönetim Kadrosu + Güncelleme Notları, tek panel/sekmeli) -->
-    <button class="panel-toggle-btn info-toggle-btn" id="info-btn" type="button">
-        <i class="fa-solid fa-circle-info"></i>
-        <span>Bilgi Merkezi</span>
-    </button>
+    <!-- Top-right actions: language switcher + info center -->
+    <div class="top-bar-actions">
+        <div class="lang-switcher" id="lang-switcher">
+            <button class="lang-toggle-btn" id="lang-btn" type="button" aria-label="Language">
+                <i class="fa-solid fa-globe"></i>
+            </button>
+            <div class="lang-dropdown" id="lang-dropdown"></div>
+        </div>
+
+        <button class="panel-toggle-btn" id="info-btn" type="button">
+            <i class="fa-solid fa-circle-info"></i>
+            <span data-i18n="infoCenterBtn">Info Center</span>
+        </button>
+    </div>
 
     <div class="side-panel info-panel" id="info-panel">
         <div class="sidebar-header">
             <div class="sidebar-heading">
-                <span class="sidebar-eyebrow">Sunucu Bilgileri</span>
-                <h3>Bilgi Merkezi</h3>
+                <span class="sidebar-eyebrow" data-i18n="infoCenterEyebrow">Server Information</span>
+                <h3 data-i18n="infoCenterTitle">Info Center</h3>
             </div>
             <i class="fa-solid fa-xmark close-btn" id="info-close-btn"></i>
         </div>
 
         <div class="panel-tabs">
             <button class="panel-tab active" data-tab="staff" type="button">
-                <i class="fa-solid fa-address-card"></i> Personel
+                <i class="fa-solid fa-address-card"></i> <span data-i18n="tabStaff">Staff</span>
             </button>
             <button class="panel-tab" data-tab="changelog" type="button">
-                <i class="fa-solid fa-bullhorn"></i> Güncellemeler
+                <i class="fa-solid fa-bullhorn"></i> <span data-i18n="tabUpdates">Updates</span>
             </button>
         </div>
 
@@ -100,11 +93,11 @@
         </div>
     </div>
 
-    <!-- 4. Alt Dock - Durum / İlerleme / Ses -->
+    <!-- Bottom status bar -->
     <div class="dock">
         <div class="dock-status">
             <span class="status-dot"></span>
-            <span id="loading-text">Yükleniyor...</span>
+            <span id="loading-text" data-i18n="loadingDefault">Loading...</span>
         </div>
 
         <div class="dock-progress">
@@ -117,13 +110,14 @@
         <div class="dock-meta">
             <span id="loading-percentage">0%</span>
             <span class="dock-divider" aria-hidden="true"></span>
-            <span class="dock-hint"><kbd>SPACE</kbd>Müzik</span>
+            <span class="dock-hint"><kbd>SPACE</kbd><span data-i18n="musicHint">Music</span></span>
             <i class="fa-solid fa-volume-high" id="volume-icon"></i>
         </div>
     </div>
 
     <audio id="bg-music" loop></audio>
 
+    <script src="js/lang.js"></script>
     <script src="js/app.js"></script>
 </body>
 </html>

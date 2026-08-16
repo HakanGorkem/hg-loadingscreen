@@ -1,81 +1,89 @@
 const Config = {
-    // Sunucu Temel Ayarları
+    // Core server settings
     Server: {
-        Name: "QUASAR ROLEPLAY",          // Oyuncuların yükleme ekranında/arayüzde göreceği sunucu adı
-        Logo: "assets/logo.png",          // Sunucunuza ait logonun projedeki dosya yolu (PNG veya SVG önerilir)
-        ThemeColor: "#ff0000",            // Arayüzün genel renk temasını belirleyen HEX renk kodu (Örn: Butonlar, vurgular için)
-        BackgroundType: "video",          // Arka planın türü: Hareketli arka plan için "video", sabit görsel için "image" yazın
-        BackgroundMedia: "assets/bg.mp4", // Arka planda oynatılacak medya dosyasının yolu (Video veya görsel dosyası)
-        Music: "assets/music.mp3",        // Yükleme ekranında çalacak arka plan müzik dosyasının yolu
-        MusicVolume: 0.3                  // Müziğin varsayılan ses seviyesi (0.0 ile 1.0 arasında bir değer girin, örn: 0.3 = %30 ses)
+        Name: "QUASAR ROLEPLAY",          // Server name shown in the loading screen
+        Logo: "assets/logo.png",          // Path to your logo (PNG or SVG recommended)
+        ShowNameLabel: false,             // Set to true if your logo does NOT already contain your server name as text
+        ThemeColor: "#ff0000",            // HEX color used for accents, buttons and highlights
+        BackgroundType: "video",          // "video" for an animated background, "image" for a static one
+        BackgroundMedia: "assets/bg.mp4", // Path to the background video or image
+        Music: "assets/music.mp3",        // Path to the background music track
+        MusicVolume: 0.3                  // Default volume, from 0.0 to 1.0 (e.g. 0.3 = 30%)
     },
 
-    // Sosyal / Harici Bağlantılar (Buton olarak sol altta gösterilir)
-    // Bir bağlantıyı gizlemek isterseniz değerini "" (boş) bırakmanız yeterli
+    // Social / external links (shown as buttons on the left panel)
+    // Leave a value as "" to hide that button entirely
     Links: {
-        Store: "https://quasarv.com/market",      // Sunucunun bağış veya paket satış mağazasının web sitesi linki
-        Discord: "https://discord.gg/quasarv", // Topluluk Discord sunucusunun davet bağlantısı
-        Youtube: "https://www.youtube.com/@Game-Of-RedLine" // Sunucunun resmi YouTube kanalının bağlantısı
+        Store: "https://quasarv.com/market",
+        Discord: "https://discord.gg/quasarv",
+        Youtube: "https://www.youtube.com/@Game-Of-RedLine"
     },
 
-    // Duyuru Slaytı — sosyal medya butonlarının altında otomatik kayan
-    // görsel şeridi. Her görsel birkaç saniyede bir otomatik değişir.
-    // Görsel eklemek için assets/ klasörüne dosyayı koyup buraya yolunu
-    // yazmanız yeterli. Liste boş bırakılırsa slayt alanı hiç görünmez.
-    Announcements: [
-        { image: "assets/announce1.svg", alt: "QuasarV Roleplay - Kalitenin tek adresi" },
-        { image: "assets/announce2.svg", alt: "Açılışa özel indirim - 28-31 Ağustos tüm donate ürünlerinde %25 indirim" },
-        { image: "assets/announce3.svg", alt: "Açılışa özel etkinlikler - 28-31 Ağustos, detaylar için Discord duyurularını takip edin" },
-    ],
+    // Language settings for the interface (does not translate your own
+    // content — server name, tagline, staff, announcements and changelog
+    // are always shown exactly as you wrote them)
+    Language: {
+        Default: "en",       // Used the first time a player loads in. Supported: en, tr, es, pt, fr, de, ru, pl, it, ar
+        ShowSelector: true   // Show the language switcher so players can change it themselves
+    },
 
-    // Güncelleme Notları — sağ üstteki "Güncelleme Notları" panelinde
-    // gösterilir. En yeni sürümü en üste ekleyin.
+    // Announcement slider — an auto-sliding image strip below the social
+    // links. Leave Items empty to hide the slider entirely.
+    AnnouncementSlider: {
+        Interval: 4500, // Milliseconds between slides
+        Items: [
+            { image: "assets/announce1.svg", alt: "QuasarV Roleplay - The one true home" },
+            { image: "assets/announce2.svg", alt: "Launch discount - 25% off all store items, August 28-31" },
+            { image: "assets/announce3.svg", alt: "Launch events - August 28-31, follow our Discord for details" },
+        ]
+    },
+
+    // Update notes shown in the Info Center panel. Add new versions at the top.
     Changelog: [
         {
             version: "v1.3.0",
-            date: "16 Ağustos 2026",
+            date: "16 August 2026",
             changes: [
-                "Sosyal medya butonlarının altına otomatik kayan duyuru slaytı eklendi",
-                "Yönetim kadrosu artık Discord'dan otomatik çekiliyor (rol ve çevrimiçi durumu dahil)",
-                "Güncelleme notları paneli eklendi",
+                "Added an auto-sliding announcement strip below the social links",
+                "Staff list can now sync automatically from Discord (roles and online status included)",
+                "Added the Updates panel",
             ],
         },
         {
             version: "v1.2.0",
-            date: "16 Ağustos 2026",
+            date: "16 August 2026",
             changes: [
-                "Arayüz baştan tasarlandı (sol konsol paneli + alt durum çubuğu)",
-                "İlerleme çubuğundaki hesaplama hataları düzeltildi",
+                "Redesigned the interface (left console panel + bottom status bar)",
+                "Fixed progress bar calculation bugs",
             ],
         },
         {
             version: "v1.0.0",
-            date: "22 Temmuz 2026",
+            date: "22 July 2026",
             changes: [
-                "İlk sürüm yayınlandı",
+                "Initial release",
             ],
         },
     ],
 
-    // Yönetim Kadrosu — Discord sunucusundan otomatik çekilir
-    // (bkz. discord-staff-sync/). Aşağıdaki adresteki JSON her ~20 dakikada
-    // bir güncellenir. Kendi deposunu kurduktan sonra bu URL'yi
-    // "KULLANICI_ADIN/REPO_ADIN" kısmını kendi GitHub kullanıcı adın ve
-    // repo adınla değiştirerek güncelle.
-    StaffSyncUrl: "https://raw.githubusercontent.com/HakanGorkem/hg-loadingscreen/main/discord-staff-sync/staff.json",
+    // Staff list — leave StaffSyncUrl empty to always use StaffFallback below.
+    // To sync automatically from Discord instead, set up the bot in
+    // discord-staff-sync/ (see README.md) and paste the raw GitHub URL
+    // it publishes here, e.g.:
+    // "https://raw.githubusercontent.com/YOUR_USERNAME/YOUR_REPO/main/discord-staff-sync/staff.json"
+    StaffSyncUrl: "",
 
-    // StaffSyncUrl'e erişilemezse (repo henüz kurulmadıysa, internet yoksa vb.)
-    // kullanılacak yedek liste — Discord entegrasyonu çalışana kadar bu liste görünür.
+    // Used when StaffSyncUrl is empty, or if it can't be reached
     StaffFallback: [
         {
-            name: "Hakan",                // Ekip üyesinin adı veya kullanıcı adı
-            role: "Project Leader",       // Ekip içerisindeki yetki/pozisyon unvanı
-            image: "assets/hakan.png"     // Ekip üyesine ait profil görselinin dosya yolu
+            name: "Hakan",
+            role: "Project Leader",
+            image: "assets/hakan.png"     // Leave as "" to show the person's initial instead of a photo
         },
         {
             name: "Cenkerᑫᵘᵃˢᵃʳ",
             role: "Project Leader",
-            image: "assets/cenker.png"                     // Görsel kullanılmayacaksa bu alanı boş bırakabilirsiniz ("")
+            image: "assets/cenker.png"
         },
         {
             name: "Noetᑫᵘᵃˢᵃʳ",
