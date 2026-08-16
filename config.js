@@ -23,7 +23,7 @@ const Config = {
     // bir güncellenir. Kendi deposunu kurduktan sonra bu URL'yi
     // "KULLANICI_ADIN/REPO_ADIN" kısmını kendi GitHub kullanıcı adın ve
     // repo adınla değiştirerek güncelle.
-    StaffSyncUrl: "https://raw.githubusercontent.com/KULLANICI_ADIN/REPO_ADIN/main/discord-staff-sync/staff.json",
+    StaffSyncUrl: "https://raw.githubusercontent.com/HakanGorkem/hg-loadingscreen/main/discord-staff-sync/staff.json",
 
     // StaffSyncUrl'e erişilemezse (repo henüz kurulmadıysa, internet yoksa vb.)
     // kullanılacak yedek liste — Discord entegrasyonu çalışana kadar bu liste görünür.
