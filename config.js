@@ -1,0 +1,62 @@
+const Config = {
+    // Sunucu Temel Ayarları
+    Server: {
+        Name: "QUASAR ROLEPLAY",          // Oyuncuların yükleme ekranında/arayüzde göreceği sunucu adı
+        Logo: "assets/logo.png",          // Sunucunuza ait logonun projedeki dosya yolu (PNG veya SVG önerilir)
+        ThemeColor: "#ff0000",            // Arayüzün genel renk temasını belirleyen HEX renk kodu (Örn: Butonlar, vurgular için)
+        BackgroundType: "video",          // Arka planın türü: Hareketli arka plan için "video", sabit görsel için "image" yazın
+        BackgroundMedia: "assets/bg.mp4", // Arka planda oynatılacak medya dosyasının yolu (Video veya görsel dosyası)
+        Music: "assets/music.mp3",        // Yükleme ekranında çalacak arka plan müzik dosyasının yolu
+        MusicVolume: 0.3                  // Müziğin varsayılan ses seviyesi (0.0 ile 1.0 arasında bir değer girin, örn: 0.3 = %30 ses)
+    },
+
+    // Sosyal / Harici Bağlantılar (Buton olarak sol altta gösterilir)
+    // Bir bağlantıyı gizlemek isterseniz değerini "" (boş) bırakmanız yeterli
+    Links: {
+        Store: "https://quasarv.com/",      // Sunucunun bağış veya paket satış mağazasının web sitesi linki
+        Discord: "https://discord.gg/quasarv", // Topluluk Discord sunucusunun davet bağlantısı
+        Youtube: "https://www.youtube.com/@QuasarVRoleplay" // Sunucunun resmi YouTube kanalının bağlantısı
+    },
+
+    // Yönetim Kadrosu — Discord sunucusundan otomatik çekilir
+    // (bkz. discord-staff-sync/). Aşağıdaki adresteki JSON her ~20 dakikada
+    // bir güncellenir. Kendi deposunu kurduktan sonra bu URL'yi
+    // "KULLANICI_ADIN/REPO_ADIN" kısmını kendi GitHub kullanıcı adın ve
+    // repo adınla değiştirerek güncelle.
+    StaffSyncUrl: "https://raw.githubusercontent.com/KULLANICI_ADIN/REPO_ADIN/main/discord-staff-sync/staff.json",
+
+    // StaffSyncUrl'e erişilemezse (repo henüz kurulmadıysa, internet yoksa vb.)
+    // kullanılacak yedek liste — Discord entegrasyonu çalışana kadar bu liste görünür.
+    StaffFallback: [
+        {
+            name: "Hakan",                // Ekip üyesinin adı veya kullanıcı adı
+            role: "Project Leader",       // Ekip içerisindeki yetki/pozisyon unvanı
+            image: "assets/hakan.png"     // Ekip üyesine ait profil görselinin dosya yolu
+        },
+        {
+            name: "Cenkerᑫᵘᵃˢᵃʳ",
+            role: "Project Leader",
+            image: "assets/cenker.png"                     // Görsel kullanılmayacaksa bu alanı boş bırakabilirsiniz ("")
+        },
+        {
+            name: "Noetᑫᵘᵃˢᵃʳ",
+            role: "Founder",
+            image: ""
+        },
+        {
+            name: "Tolgaᑫᵘᵃˢᵃʳ",
+            role: "Management",
+            image: ""
+        },
+        {
+            name: "Deadzoneᑫᵘᵃˢᵃʳ",
+            role: "Senior Developer",
+            image: ""
+        },
+        {
+            name: "Emreᑫᵘᵃˢᵃʳ",
+            role: "Senior Developer",
+            image: ""
+        },
+    ]
+};

@@ -1,0 +1,9 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "hg-loadingscrean",
+      "url": "http://localhost:8141"
+    }
+  ]
+}

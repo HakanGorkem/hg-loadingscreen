@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HG Loading Screen</title>
+
+    <!-- İkonlar için Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- Kendi Tasarım Dosyamız -->
+    <link rel="stylesheet" href="css/style.css">
+
+    <!-- Müşterinin Ayar Dosyası -->
+    <script src="config.js"></script>
+</head>
+<body>
+
+    <!-- HUD Çerçevesi (dört köşe braketi) -->
+    <div class="hud-frame" aria-hidden="true">
+        <span class="corner corner-tl"></span>
+        <span class="corner corner-tr"></span>
+        <span class="corner corner-bl"></span>
+        <span class="corner corner-br"></span>
+    </div>
+
+    <!-- 1. Arka Plan ve Sinematik Filtreler -->
+    <div class="background-container">
+        <div id="bg-media"></div>
+        <div class="grain" aria-hidden="true"></div>
+        <div class="scanline" aria-hidden="true"></div>
+        <div class="overlay"></div>
+    </div>
+
+    <!-- 2. Sol Konsol Paneli — Logo / Slogan / Bağlantılar -->
+    <aside class="panel">
+        <div class="panel-top">
+            <span class="eyebrow">
+                <i class="fa-solid fa-satellite-dish" aria-hidden="true"></i>
+                QuasarV Roleplay
+            </span>
+        </div>
+
+        <div class="panel-mid">
+            <div class="logo-container">
+                <img id="server-logo" src="" alt="Sunucu Logosu">
+            </div>
+
+            <!-- Logo görseli marka adını zaten içeriyor; bu başlık config.js'e
+                 bağlı kalsın diye DOM'da duruyor ama görsel olarak kapalı
+                 (bkz. css/style.css: #server-name) -->
+            <h2 id="server-name"></h2>
+
+            <!-- Logoyu alttaki bağlantı listesinden ayıran tam genişlik çizgi -->
+            <div class="panel-divider"></div>
+        </div>
+
+        <div class="panel-bottom">
+            <!-- Sosyal / Harici Bağlantılar (config.js -> Links üzerinden yönetilir) -->
+            <div class="social-links" id="social-links"></div>
+        </div>
+    </aside>
+
+    <!-- 3. Sağ Üst - Yönetim Kadrosu (Açılır Dosya Paneli) -->
+    <button class="staff-toggle-btn" id="staff-btn" type="button">
+        <i class="fa-solid fa-address-card"></i>
+        <span>Yönetim Kadrosu</span>
+    </button>
+
+    <div class="staff-sidebar" id="staff-sidebar">
+        <div class="sidebar-header">
+            <div class="sidebar-heading">
+                <span class="sidebar-eyebrow">Personel Dosyası</span>
+                <h3>Yönetim Kadromuz</h3>
+            </div>
+            <i class="fa-solid fa-xmark close-btn" id="close-btn"></i>
+        </div>
+        <div class="staff-list" id="staff-list"></div>
+    </div>
+
+    <!-- 4. Alt Dock - Durum / İlerleme / Ses -->
+    <div class="dock">
+        <div class="dock-status">
+            <span class="status-dot"></span>
+            <span id="loading-text">Yükleniyor...</span>
+        </div>
+
+        <div class="dock-progress">
+            <div class="progress-bar">
+                <div class="progress-ticks" aria-hidden="true"></div>
+                <div class="progress" id="progress"></div>
+            </div>
+        </div>
+
+        <div class="dock-meta">
+            <span id="loading-percentage">0%</span>
+            <span class="dock-divider" aria-hidden="true"></span>
+            <span class="dock-hint"><kbd>SPACE</kbd>Müzik</span>
+            <i class="fa-solid fa-volume-high" id="volume-icon"></i>
+        </div>
+    </div>
+
+    <audio id="bg-music" loop></audio>
+
+    <script src="js/app.js"></script>
+</body>
+</html>

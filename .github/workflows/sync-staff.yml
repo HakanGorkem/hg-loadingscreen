@@ -1,0 +1,38 @@
+name: Discord Staff Sync
+
+on:
+  schedule:
+    - cron: '*/20 * * * *'
+  workflow_dispatch: {}
+
+permissions:
+  contents: write
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Install dependencies
+        working-directory: discord-staff-sync
+        run: npm install
+
+      - name: Run sync
+        working-directory: discord-staff-sync
+        env:
+          DISCORD_BOT_TOKEN: ${{ secrets.DISCORD_BOT_TOKEN }}
+        run: node sync.js
+
+      - name: Commit updated staff.json
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add discord-staff-sync/staff.json
+          git diff --staged --quiet && echo "Degisiklik yok" || (git commit -m "chore: yonetim kadrosu listesini guncelle" && git push)

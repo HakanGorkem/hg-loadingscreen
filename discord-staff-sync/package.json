@@ -1,0 +1,13 @@
+{
+  "name": "discord-staff-sync",
+  "version": "1.0.0",
+  "private": true,
+  "description": "QuasarV Roleplay loading screen icin Discord yonetim kadrosunu role gore ceken senkronizasyon scripti",
+  "main": "sync.js",
+  "scripts": {
+    "sync": "node sync.js"
+  },
+  "dependencies": {
+    "discord.js": "^14.14.1"
+  }
+}
